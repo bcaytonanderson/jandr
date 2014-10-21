@@ -1,0 +1,1 @@
+FileUtils.cp_r('public/assets/', 'app/assets/javascripts/assets')
