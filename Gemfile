@@ -69,3 +69,7 @@ end
 gem 'devise'
 
 gem 'pry-byebug'
+
+gem 'bower-rails'
+
+ruby '2.0.0'

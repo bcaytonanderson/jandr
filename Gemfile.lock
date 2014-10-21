@@ -29,6 +29,7 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
+    bower-rails (0.9.1)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -228,6 +229,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bower-rails
   capybara
   coffee-rails
   database_cleaner
