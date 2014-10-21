@@ -5,6 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'ember-rails'
+# gem 'ember-source'
 
 gem 'sprockets'
 

@@ -1,11 +1,5 @@
-import Ember from 'ember';
-import config from './config/environment';
+// For more information see: http://emberjs.com/guides/routing/
 
-var Router = Ember.Router.extend({
-  location: config.locationType
+Jandr.Router.map(function() {
+  // this.resource('posts');
 });
-
-Router.map(function() {
-});
-
-export default Router;
