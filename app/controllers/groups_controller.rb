@@ -1,1 +1,4 @@
-pages_controller.rb
+class GroupsController < ApplicationController
+
+
+end

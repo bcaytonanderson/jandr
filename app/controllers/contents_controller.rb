@@ -1,1 +1,3 @@
-contents_controller.rb
+class ContentsController < ApplicationController
+
+end
