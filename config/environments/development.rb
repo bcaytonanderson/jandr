@@ -6,7 +6,7 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  config.assets.enabled = false
+  config.assets.enabled = true
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -24,6 +24,9 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # config.serve_static_assets = true
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
