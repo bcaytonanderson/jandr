@@ -8,6 +8,61 @@
 
 <script type="text/x-handlebars" data-template-name="application">
 
-<h1>hello</h1>
+  <h1>hello</h1>
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="dashboard">
+
+  <div class="dashboard">
+
+    <%= form_tag "/", method: :put do %>
+
+      <div class="site-name">
+        <%= label_tag "site[name]", "Name:" %><br/>
+        <%#= text_field_tag "site[name]", "#{@site.name}" %>
+      </div>
+
+      <div class="site-headline">
+        <%= label_tag "site[headline]", "Headline:" %><br/>
+        <%#= text_field_tag "site[headline]", "#{@site.headline}" %>
+      </div>
+
+      <div class="site-logo">
+        <%= label_tag "site[logo]", "Logo:" %><br/>
+        <%#= file_field_tag "site[logo]" %>
+      </div>
+
+      <div class="site-theme">
+        <%= label_tag "site[theme]" %><br/>
+        <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
+      </div>
+
+      {{partial "groups"}}
+
+      <div class="submit"><%= submit_tag("Submit") %></div>
+
+    <% end %>
+
+  </div>
+
+</script>
+
+
+<script type="text/x-handlebars" data-template-name="_groups">
+
+
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="_group_list">
+
+
+
+</script>
+
+<script type="text/x-handlebars" data-template-name="_content">
+
+
 
 </script>

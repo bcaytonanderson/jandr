@@ -4,7 +4,7 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.cache_classes = true
 
-  config.assets.enabled = false
+  config.assets.enabled = true
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
@@ -72,6 +72,6 @@ Rails.application.configure do
 
   config.ember.variant = :production
 
-  config.handlebars.precompile = true
+  config.handlebars.precompile = false
 
 end
