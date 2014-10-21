@@ -1,1 +1,1 @@
-web: ember serve --environment production --port $PORT
+web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
