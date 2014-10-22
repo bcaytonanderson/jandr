@@ -2,14 +2,9 @@
 
   <%= form_tag "/contents/#{@content.id}", method: :put do %>
 
-    <div class="edit-content-type">
-      <%= label_tag "content[type]", "Type:" %><br/>
-      <%= text_field_tag "content[type]", "#{@content.type}" %>
-    </div>
-
     <div class="edit-content-title">
       <%= label_tag "content[title]", "Title:" %><br/>
-      <%= text_field_tag "content[type]", "#{@content.title}" %>
+      <%= text_field_tag "content[title]", "#{@content.title}" %>
     </div>
 
     <div class="edit-content-subtitle">
@@ -29,7 +24,11 @@
 
     <div class="edit-content-featured">
       <%= label_tag "content[featured]", "Featured:" %><br/>
-      <%= check_box_tag "content[featured]" %>
+      <% if @content.featured %>
+        <input checked="checked" id="content[featured]" name="content[featured]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
+      <% else %>
+        <%= check_box_tag "content[featured]" %>
+      <% end %>
     </div>
 
     <div class="edit-content-submit">
