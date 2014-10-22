@@ -6,5 +6,10 @@
 //= require ./jandr
 
 // for more details see: http://emberjs.com/guides/application/
-Jandr = Ember.Application.create();
+Jandr = Ember.Application.create({
+  LOG_TRANSITIONS: true
+});
 
+Jandr.SiteController = Ember.Controller.extend({
+
+});

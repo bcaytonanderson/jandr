@@ -1,0 +1,41 @@
+<div class="edit-content">
+
+  <%= form_tag "/contents/#{@content.id}", method: :put do %>
+
+    <div class="edit-content-type">
+      <%= label_tag "content[type]", "Type:" %><br/>
+      <%= text_field_tag "content[type]", "#{@content.type}" %>
+    </div>
+
+    <div class="edit-content-title">
+      <%= label_tag "content[title]", "Title:" %><br/>
+      <%= text_field_tag "content[type]", "#{@content.title}" %>
+    </div>
+
+    <div class="edit-content-subtitle">
+      <%= label_tag "content[subtitle]", "Subtitle:" %><br/>
+      <%= text_field_tag "content[subtitle]", "#{@content.subtitle}" %>
+    </div>
+
+    <div class="edit-content-image">
+      <%= label_tag "content[image]", "Image:" %><br/>
+      <%= file_field_tag "content[image]" %>
+    </div>
+
+    <div class="edit-content-story">
+      <%= label_tag "content[story]", "Story:" %><br/>
+      <%= text_area_tag "content[story]", "#{@content.story}" %>
+    </div>
+
+    <div class="edit-content-featured">
+      <%= label_tag "content[featured]", "Featured:" %><br/>
+      <%= check_box_tag "content[featured]" %>
+    </div>
+
+    <div class="edit-content-submit">
+      <%= submit_tag "Submit Content" %>
+    </div>
+
+  <% end %>
+
+</div>

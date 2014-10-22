@@ -6,6 +6,15 @@ Rails.application.routes.draw do
 
   get "/admin" => "users#index"
 
+  resources :site, :only => [:create, :new, :show, :edit, :update]
+
+  resources :groups do
+    resources :contents, :only => [:index, :create, :new]
+  end
+
+  resources :contents, :only => [:index, :show, :edit, :update, :delete]
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
