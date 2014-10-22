@@ -1,3 +1,6 @@
+<%= link_to "Admin","/admin" %>
+<%= link_to "Edit #{@group.name}","/groups/#{@group.id}/edit" %>
+
 <div class="edit-content">
 
   <%= form_tag "/contents/#{@content.id}", method: :put do %>

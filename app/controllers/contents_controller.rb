@@ -14,6 +14,7 @@ class ContentsController < ApplicationController
 
   def edit
     @content = Content.find(params[:id])
+    @group = Group.find(@content.group_id)
   end
 
   def update

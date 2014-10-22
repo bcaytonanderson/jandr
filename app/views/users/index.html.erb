@@ -6,8 +6,6 @@
   <%= link_to 'Sign In', new_user_session_path %>
 <% end %>
 
-<p>for presentation, i'll make a site for around la porte newspaper using it, then we can go through the process of pulling it from github, and deploying to heroku with it.</p>
-
 <% if @site != nil %>
 
   <%= form_tag "/site/#{@site.id}", method: :put do %>
@@ -32,17 +30,18 @@
       <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
     </div>
 
-    <h3>Groups</h3>
-    <ol>
-      <% @groups.each do |group| %>
-        <li>
-          <%= link_to "Edit #{group.name}", "/groups/#{group.id}/edit" %>
-        </li>
-      <% end %>
-    </ol>
 
     <%= submit_tag "Submit" %>
 
   <% end %>
+
+  <h3>Groups</h3>
+  <ol>
+    <% @groups.each do |group| %>
+      <li>
+        <%= link_to "Edit #{group.name}", "/groups/#{group.id}/edit" %>
+      </li>
+    <% end %>
+  </ol>
 
 <% end %>
