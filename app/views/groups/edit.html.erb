@@ -1,3 +1,5 @@
+<%= link_to "Admin","/admin" %>
+
 <div class="edit-group">
   <%= form_tag "/groups/#{@group.id}", method: :put do %>
 
@@ -8,7 +10,11 @@
 
     <div class="edit-group-nav">
       <%= label_tag "group[nav]", "In the Navbar:" %>
-      <%= check_box_tag "group[nav]" %>
+      <% if @group.nav %>
+        <input checked="checked" id="group[nav]" name="group[nav]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
+      <% else %>
+        <%= check_box_tag "group[nav]" %>
+      <% end %>
     </div>
 
     <div class="edit-group-submit">
@@ -23,7 +29,6 @@
       <li>
         <%= link_to "Edit #{content.title}", "/contents/#{content.id}/edit" %>
       </li>
-
     <% end %>
 
 </div>

@@ -18,6 +18,13 @@ class GroupsController < ApplicationController
   end
 
   def update
+    @group = Group.find(params[:id])
+    if group_params["nav"] == nil
+      @group.nav = false
+      @group.save
+    end
+    @group.update(group_params)
+    redirect_to "/groups/#{@group.id}/edit"
   end
 
   def delete
@@ -26,7 +33,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :nav)
   end
 
 end
