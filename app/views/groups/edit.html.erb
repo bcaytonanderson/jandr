@@ -1,0 +1,29 @@
+<div class="edit-group">
+  <%= form_tag "/groups/#{@group.id}", method: :put do %>
+
+    <div class="edit-group-name">
+      <%= label_tag "group[name]", "Name:" %>
+      <%= text_field_tag "group[name]", "#{@group.name}" %>
+    </div>
+
+    <div class="edit-group-nav">
+      <%= label_tag "group[nav]", "In the Navbar:" %>
+      <%= check_box_tag "group[nav]" %>
+    </div>
+
+    <div class="edit-group-submit">
+      <%= submit_tag "Submit" %>
+    </div>
+
+  <% end %>
+
+  <h3>Contents</h3>
+  <ol>
+    <% @contents.each do |content| %>
+      <li>
+        <%= link_to "Edit #{content.title}", "/contents/#{content.id}/edit" %>
+      </li>
+
+    <% end %>
+
+</div>

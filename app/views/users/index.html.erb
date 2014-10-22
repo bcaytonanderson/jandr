@@ -6,70 +6,43 @@
   <%= link_to 'Sign In', new_user_session_path %>
 <% end %>
 
-<script type="text/x-handlebars" data-template-name="application">
+<p>for presentation, i'll make a site for around la porte newspaper using it, then we can go through the process of pulling it from github, and deploying to heroku with it.</p>
 
-  <h1>hello</h1>
+<% if @site != nil %>
 
-</script>
+  <%= form_tag "/site/#{@site.id}", method: :put do %>
 
-<script type="text/x-handlebars" data-template-name="dashboard">
+    <div class="site-name">
+      <%= label_tag "site[name]", "Name:" %><br/>
+      <%= text_field_tag "site[name]", "#{@site.name}" %>
+    </div>
 
-  <div class="dashboard">
+    <div class="site-headline">
+      <%= label_tag "site[headline]", "Headline:" %><br/>
+      <%= text_field_tag "site[headline]", "#{@site.headline}" %>
+    </div>
 
-    <%= form_tag "/", method: :put do %>
+    <div class="site-logo">
+      <%= label_tag "site[logo]", "Logo:" %><br/>
+      <%= file_field_tag "site[logo]" %>
+    </div>
 
-      <div class="site-name">
-        <%= label_tag "site[name]", "Name:" %><br/>
-        <%#= text_field_tag "site[name]", "#{@site.name}" %>
-      </div>
+    <div class="site-theme">
+      <%= label_tag "site[theme]", "Theme:" %><br/>
+      <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
+    </div>
 
-      <div class="site-headline">
-        <%= label_tag "site[headline]", "Headline:" %><br/>
-        <%#= text_field_tag "site[headline]", "#{@site.headline}" %>
-      </div>
-
-      <div class="site-logo">
-        <%= label_tag "site[logo]", "Logo:" %><br/>
-        <%#= file_field_tag "site[logo]" %>
-      </div>
-
-      <div class="site-theme">
-        <%= label_tag "site[theme]" %><br/>
-        <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
-      </div>
-
-      {{partial "groups"}}
-
-      <div class="submit"><%= submit_tag("Submit") %></div>
-
-    <% end %>
-
-  </div>
-
-</script>
-
-
-<script type="text/x-handlebars" data-template-name="_groups">
-
-  <div class="groups">
-    <h3>Groups:</h3>
-    <ul>
+    <h3>Groups</h3>
+    <ol>
       <% @groups.each do |group| %>
         <li>
-    </ul>
+          <%= link_to "Edit #{group.name}", "/groups/#{group.id}/edit" %>
+        </li>
+      <% end %>
+    </ol>
 
-  </div>
+    <%= submit_tag "Submit" %>
 
-</script>
+  <% end %>
 
-<script type="text/x-handlebars" data-template-name="_group_dropdown">
-
-
-
-</script>
-
-<script type="text/x-handlebars" data-template-name="_content">
-
-
-
-</script>
+<% end %>

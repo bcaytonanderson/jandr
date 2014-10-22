@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020220114) do
+ActiveRecord::Schema.define(version: 20141021200057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20141020220114) do
     t.boolean  "nav"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "site_id"
   end
+
+  add_index "groups", ["site_id"], name: "index_groups_on_site_id", using: :btree
 
   create_table "sites", force: true do |t|
     t.string   "name"
@@ -44,7 +47,10 @@ ActiveRecord::Schema.define(version: 20141020220114) do
     t.string   "theme"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.datetime "created_at"

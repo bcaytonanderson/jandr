@@ -254,7 +254,9 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   devise
+  ember-data-source
   ember-rails
+  ember-source
   factory_girl_rails (~> 4.0)
   foreman
   guard
