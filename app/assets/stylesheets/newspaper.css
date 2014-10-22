@@ -1,0 +1,106 @@
+.clear:before,
+.clear:after {
+    content: " ";
+    display: table;
+}
+
+.clear:after {
+    clear: both;
+}
+
+body {
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav {
+  width: 100%;
+  margin: 0;
+  background-color: #d4d3d1;
+  font-size: 2em;
+}
+
+.nav-brand {
+  float: left;
+  font-weight: 700;
+  color: white;
+  display: block;
+  margin-left: 15px;
+  padding: 10px 30px;
+  background-color: #666;
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  float: right;
+  border-left: 1px solid;
+}
+
+nav ul li a {
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+  padding: 10px 10px;
+}
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+section.page-container {
+  width: 900px;
+  padding: 0;
+  margin: 20px auto;
+}
+
+section.page-container article.featured-post {
+  border: 5px solid black;
+  padding: 10px;
+  margin: 10px auto;
+}
+section.page-container article.featured-post img {
+  float: left;
+  margin-right: 10px;
+}
+section.page-container article.featured-post h2 {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 5px;
+}
+section.page-container article.featured-post h4 {
+  font-size: 1.75em;
+  font-weight: 700;
+  margin: 5px;
+}
+section.page-container article.featured-post p {
+  font-size: 1.5em;
+  text-align: justify;
+}
+section.page-container article.article-link {
+  border: 2px solid black;
+  padding: 10px;
+  margin: 10px auto;
+}
+section.page-container article.article-link img {
+  float: left;
+  margin-right: 10px;
+}
+section.page-container article.article-link h3 {
+  font-size: 1.75em;
+  font-weight: 700;
+  margin: 5px;
+}
+section.page-container article.article-link h4 {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 5px;
+}
+section.page-container article.article-link p {
+  font-size: 1.5em;
+  text-align: justify;
+}
