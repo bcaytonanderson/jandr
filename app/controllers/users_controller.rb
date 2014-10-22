@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @site = Site.find_by(user_id: current_user.id)
-    @groups = Group.where(site_id: @site.id)
+    @groups = @site.groups
   end
 
   def new

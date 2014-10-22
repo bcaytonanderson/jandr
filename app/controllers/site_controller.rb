@@ -2,6 +2,7 @@ class SiteController < ApplicationController
 
   def index
     @site = Site.find_by(user_id: current_user.id)
+    @groups = @site.groups
   end
 
   def create
@@ -14,6 +15,8 @@ class SiteController < ApplicationController
   end
 
   def show
+    @site = Site.find_by(user_id: current_user.id)
+    @groups = @site.groups
   end
 
   def update
