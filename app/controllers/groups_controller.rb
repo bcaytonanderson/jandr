@@ -4,9 +4,15 @@ class GroupsController < ApplicationController
   end
 
   def create
+    @site = Site.find_by(user_id: current_user.id)
+    @group = Group.new(group_params)
+    @group.site_id = @site.id
+    @group.save
+    redirect_to '/admin'
   end
 
   def new
+    @group = Group.new
   end
 
   def show

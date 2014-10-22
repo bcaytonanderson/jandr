@@ -1,0 +1,36 @@
+<div class="new-content">
+
+  <%= form_tag "/groups/#{@group.id}/contents", method: :post do %>
+
+    <div class="new-content-title">
+      <%= label_tag "content[title]", "Title:" %><br/>
+      <%= text_field_tag "content[title]" %>
+    </div>
+
+    <div class="new-content-subtitle">
+      <%= label_tag "content[subtitle]", "Subtitle:" %><br/>
+      <%= text_field_tag "content[subtitle]" %>
+    </div>
+
+    <div class="new-content-image">
+      <%= label_tag "content[image]", "Image:" %><br/>
+      <%= file_field_tag "content[image]" %>
+    </div>
+
+    <div class="new-content-story">
+      <%= label_tag "content[story]", "Story:" %><br/>
+      <%= text_area_tag "content[story]" %>
+    </div>
+
+    <div class="new-content-featured">
+      <%= label_tag "content[featured]", "Featured:" %><br/>
+      <%= check_box_tag "content[featured]" %>
+    </div>
+
+    <div class="new-content-submit">
+      <%= submit_tag "Submit Content" %>
+    </div>
+
+  <% end %>
+
+</div>

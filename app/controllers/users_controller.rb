@@ -3,7 +3,11 @@ class UsersController < ApplicationController
 
   def index
     @site = Site.find_by(user_id: current_user.id)
-    @groups = @site.groups
+    if @site != nil
+      @groups = @site.groups
+    else
+      redirect_to '/site/new'
+    end
   end
 
   def new

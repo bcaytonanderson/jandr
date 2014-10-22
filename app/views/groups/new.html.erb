@@ -1,0 +1,21 @@
+<div class="new-group">
+
+  <%= form_tag "/groups", method: :post do %>
+
+    <div class="new-group-name">
+      <%= label_tag "group[name]", "Name:" %>
+      <%= text_field_tag "group[name]" %>
+    </div>
+
+    <div class="new-group-nav">
+      <%= label_tag "group[nav]", "In the Navbar:" %>
+      <%= check_box_tag "group[nav]" %>
+    </div>
+
+    <div class="new-group-submit">
+      <%= submit_tag "Submit" %>
+    </div>
+
+  <% end %>
+
+</div>

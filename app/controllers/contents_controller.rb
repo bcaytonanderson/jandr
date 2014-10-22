@@ -4,9 +4,16 @@ class ContentsController < ApplicationController
   end
 
   def create
+    @group = Group.find(params[:group_id])
+    @content = Content.new(content_params)
+    @content.group_id = @group.id
+    @content.save
+    redirect_to '/admin'
   end
 
   def new
+    @group = Group.find(params[:group_id])
+    @content = Content.new
   end
 
   def show
@@ -22,7 +29,6 @@ class ContentsController < ApplicationController
     if content_params["featured"] == nil
       @content.featured = false
       @content.save
-
     end
     @content.update(content_params)
     redirect_to "/contents/#{@content.id}/edit"

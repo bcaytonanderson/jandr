@@ -1,0 +1,26 @@
+<%= form_tag "/site", method: :post do %>
+
+  <div class="site-name">
+    <%= label_tag "site[name]", "Name:" %><br/>
+    <%= text_field_tag "site[name]"%>
+  </div>
+
+  <div class="site-headline">
+    <%= label_tag "site[headline]", "Headline:" %><br/>
+    <%= text_field_tag "site[headline]" %>
+  </div>
+
+  <div class="site-logo">
+    <%= label_tag "site[logo]", "Logo:" %><br/>
+    <%= file_field_tag "site[logo]" %>
+  </div>
+
+  <div class="site-theme">
+    <%#= label_tag "site[theme]", "Theme:" %><br/>
+    <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
+  </div>
+
+
+  <%= submit_tag "Submit" %>
+
+<% end %>

@@ -24,6 +24,9 @@
   <% end %>
 
   <h3>Contents</h3>
+  <div class="content-create">
+    <%= link_to "Create Content","/groups/#{@group.id}/contents/new" %>
+  </div>
   <ol>
     <% @contents.each do |content| %>
       <li>

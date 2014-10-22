@@ -36,6 +36,9 @@
   <% end %>
 
   <h3>Groups</h3>
+  <div class="group-create">
+    <%= link_to "Create a Group","/groups/new" %>
+  </div>
   <ol>
     <% @groups.each do |group| %>
       <li>
