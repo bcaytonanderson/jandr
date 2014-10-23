@@ -1,0 +1,21 @@
+* {
+  // border: 1px solid black;
+}
+
+div {
+  border: none;
+}
+
+.dashboard {
+  width: 80%;
+  margin: 0 auto;
+}
+
+input[type="submit"]{
+  margin: 10px 0;
+}
+
+ul, li {
+  list-style-type: none;
+  padding-left: none;
+}

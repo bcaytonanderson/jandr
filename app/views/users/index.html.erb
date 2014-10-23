@@ -1,148 +1,171 @@
 <div class="dashboard">
 
-<h1>Admin</h1>
-
-<% if current_user %>
-  <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to 'Sign In', new_user_session_path %>
-<% end %>
-
-<% if @site != nil %>
-
-  <%= form_tag "/site/#{@site.id}", method: :put, remote: true do %>
-
-    <div class="site-name">
-      <%= label_tag "site[name]", "Name:" %><br/>
-      <%= text_field_tag "site[name]", "#{@site.name}" %>
-    </div>
-
-    <div class="site-headline">
-      <%= label_tag "site[headline]", "Headline:" %><br/>
-      <%= text_field_tag "site[headline]", "#{@site.headline}" %>
-    </div>
-
-
-    <div class="site-logo">
-      <%#= image_tag "hello.jpg" %>
-    </div>
-
-    <div class="site-theme">
-      <%#= label_tag "site[theme]", "Theme:" %><br/>
-      <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
-    </div>
-
-
-    <%= submit_tag "Submit" %>
-
+  <!-- SIGN OUT -->
+  <% if current_user %>
+    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to 'Sign In', new_user_session_path %>
   <% end %>
 
-<%= form_tag "/site/#{@site.id}", method: :put do %>
+  <h1>Admin for <%= @site.name %></h1>
 
-    <div class="site-logo">
-      <%#= label_tag "site[picture]", "Logo:" %><br/>
-      <%#= file_field_tag "picture" %>
-    </div>
+<!-- IF SITE HAS BEEN CREATED -->
+  <% if @site != nil %>
 
-    <div class="site-logo">
-      <!-- <h3>Current logo</h3> -->
-      <%#= image_tag "hello.jpg" %>
-    </div>
+    <!-- EDIT SITE FORM / AJAX -->
+    <div class="edit-site">
+      <%= form_tag "/site/#{@site.id}", method: :put, remote: true do %>
 
-<% end %>
+        <!-- SITE NAME -->
+        <div class="site-name">
+          <%= label_tag "site[name]", "Name:" %><br/>
+          <%= text_field_tag "site[name]", "#{@site.name}" %>
+        </div>
 
-  <div id="container"></div>
+        <!-- SITE HEADLINE -->
+        <div class="site-headline">
+          <%= label_tag "site[headline]", "Headline:" %><br/>
+          <%= text_field_tag "site[headline]", "#{@site.headline}" %>
+        </div>
 
-  <h3>Groups</h3>
-  <div class="group-create">
-    <%= link_to "Create a Group", new_group_path, remote: true %>
-  </div>
-  <div class="new-group-form" style="display:none;"></div>
-  <ol>
-    <% @groups.each do |group| %>
-      <li>
-        <%= link_to "Edit #{group.name}", "/groups/#{group.id}/edit"%>
-      </li>
-      <div class="edit-group">
-  <%= form_tag "/groups/#{group.id}", method: :put, remote: true do %>
+        <!-- DISPLAY CURRENT SITE LOGO -->
+        <div class="site-logo">
+          <h3>Current Site Logo</h3>
+          <%#= image_tag "site-logo.jpg" %>
+        </div>
 
-    <div class="edit-group-name">
-      <%= label_tag "group[name]", "Name:" %>
-      <%= text_field_tag "group[name]", "#{group.name}" %>
-    </div>
+        <!-- SITE THEME / OPTIONAL -->
+        <div class="site-theme">
+          <%#= label_tag "site[theme]", "Theme:" %><br/>
+          <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
+        </div>
 
-    <div class="edit-group-nav">
-      <%= label_tag "group[nav]", "In the Navbar:" %>
-      <% if group.nav %>
-        <input checked="checked" id="group[nav]" name="group[nav]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
-      <% else %>
-        <%= check_box_tag "group[nav]" %>
+        <!-- EDIT SITE SUBMIT BUTTON -->
+        <%= submit_tag "Submit" %>
+
       <% end %>
-    </div>
 
-    <div class="edit-group-submit">
-      <%= submit_tag "Submit" %>
+    </div><!-- //EDIT SITE FORM -->
+
+    <!-- CREATE NEW GROUP / BUILD AJAX FORM REQUEST AND INSERT IT ON DOM -->
+    <div class="group-create">
+      <%= link_to "Create a Group", new_group_path, remote: true %>
     </div>
+    <div class="new-group-form" style="display:none;"></div>
+
+    <!-- GROUPS -->
+    <div class="edit-groups">
+      <h3>Current Groups</h3>
+      <% @groups.each do |group| %>
+
+        <!-- MAKE LINK THAT SHOWS THE EDIT GROUP FORM BELOW IT -->
+        <%#= link_to "#{group.name}", "/groups/#{group.id}/edit", class: "edit-group" %>
+
+        <!-- EDIT GROUP FORM / AJAX-->
+        <div class="edit-group-form">
+          <%= form_tag "/groups/#{group.id}", method: :put, remote: true do %>
+
+            <!-- EDIT GROUP NAME -->
+            <div class="edit-group-name">
+              <%= label_tag "group[name]", "Name:" %>
+              <%= text_field_tag "group[name]", "#{group.name}" %>
+            </div>
+
+            <!-- EDIT WHETHER GROUP IS IN NAVBAR -->
+            <div class="edit-group-nav">
+              <%= label_tag "group[nav]", "In the Navbar:" %>
+              <% if group.nav %>
+                <input checked="checked" id="group[nav]" name="group[nav]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
+              <% else %>
+                <%= check_box_tag "group[nav]" %>
+              <% end %>
+            </div>
+
+            <!-- EDIT GROUP SUBMIT BUTTON -->
+            <div class="edit-group-submit">
+              <%= submit_tag "Submit" %>
+            </div>
+
+          <% end %>
+        </div><!-- EDIT GROUP FORM -->
+
+
+        <!-- CREATE NEW CONTENT / BUILD AJAX FORM REQUEST AND INSERT IT ON DOM -->
+        <div class="content-create">
+          <%#= link_to "Create Content","/groups/#{group.id}/contents/new", remote: true %>
+        </div>
+        <div class="new-content-form" style="display:none;"></div>
+
+        <!-- CONTENTS -->
+        <h3>Contents</h3>
+        <% @contents = Content.where(group_id: group.id) %>
+        <% @contents.each do |content| %>
+
+          <!-- MAKE LINK THAT SHOWS THE EDIT CONTENT FORM BELOW IT -->
+          <%#= link_to "Edit #{content.title}", "/contents/#{content.id}/edit" %>
+
+          <!-- EDIT CONTENT FORM / AJAX -->
+          <div class="edit-content-form">
+            <%= form_tag "/contents/#{content.id}", method: :put, remote: true do %>
+
+              <!-- EDIT CONTENT TITLE -->
+              <div class="edit-content-title">
+                <%= label_tag "content[title]", "Title:" %><br/>
+                <%= text_field_tag "content[title]", "#{content.title}" %>
+              </div>
+
+              <!-- EDIT CONTENT SUBTITLE -->
+              <div class="edit-content-subtitle">
+                <%= label_tag "content[subtitle]", "Subtitle:" %><br/>
+                <%= text_field_tag "content[subtitle]", "#{content.subtitle}" %>
+              </div>
+
+              <!-- EDIT CONTENT STORY -->
+              <div class="edit-content-story">
+                <%= label_tag "content[story]", "Story:" %><br/>
+                <%= text_area_tag "content[story]", "#{content.story}" %>
+              </div>
+
+              <!-- EDIT WHETHER CONTENT IS FEATURED CONTENT -->
+              <div class="edit-content-featured">
+                <%= label_tag "content[featured]", "Featured:" %><br/>
+                <% if content.featured %>
+                  <input checked="checked" id="content[featured]" name="content[featured]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
+                <% else %>
+                  <%= check_box_tag "content[featured]" %>
+                <% end %>
+              </div>
+
+              <!-- EDIT CONTENT SUBMIT BUTTON -->
+              <div class="edit-content-submit">
+                <%= submit_tag "Submit Content" %>
+              </div>
+
+            <% end %><!-- //EDIT CONTENT FORM -->
+          </div><!-- //EDIT CONTENT FORM -->
+        <% end %><!-- //CONTENT ITERATION -->
+      <% end %><!-- //GROUP ITERATION -->
+    </div><!-- EDIT GROUPS -->
+  <% end %><!-- //IF @SITE EXISTS -->
+</div><!-- //DASHBOARD -->
+
+
+<div class="image-uploader">
+  <!-- IMAGE UPLOADER -->
+  <%= form_tag "/site/#{@site.id}", method: :put do %>
+
+      <div class="site-logo">
+        <%#= label_tag "site[picture]", "Logo:" %><br/>
+        <%#= file_field_tag "picture" %>
+      </div>
+
+      <div class="site-logo">
+        <!-- <h3>Current logo</h3> -->
+        <%#= image_tag "hello.jpg" %>
+      </div>
 
   <% end %>
-
-  <h3>Contents</h3>
-  <% @contents = Content.where(group_id: group.id) %>
-  <div class="content-create">
-    <%= link_to "Create Content","/groups/#{group.id}/contents/new", remote: true %>
-  </div>
-  <ol>
-    <% @contents.each do |content| %>
-      <li>
-        <%#= link_to "Edit #{content.title}", "/contents/#{content.id}/edit" %>
-      </li>
-      <div class="edit-content">
-
-  <%= form_tag "/contents/#{content.id}", method: :put, remote: true do %>
-
-    <div class="edit-content-title">
-      <%= label_tag "content[title]", "Title:" %><br/>
-      <%= text_field_tag "content[title]", "#{content.title}" %>
-    </div>
-
-    <div class="edit-content-subtitle">
-      <%= label_tag "content[subtitle]", "Subtitle:" %><br/>
-      <%= text_field_tag "content[subtitle]", "#{content.subtitle}" %>
-    </div>
-
-    <div class="edit-content-image">
-      <%= label_tag "content[image]", "Image:" %><br/>
-      <%= file_field_tag "content[image]" %>
-    </div>
-
-    <div class="edit-content-story">
-      <%= label_tag "content[story]", "Story:" %><br/>
-      <%= text_area_tag "content[story]", "#{content.story}" %>
-    </div>
-
-    <div class="edit-content-featured">
-      <%= label_tag "content[featured]", "Featured:" %><br/>
-      <% if content.featured %>
-        <input checked="checked" id="content[featured]" name="content[featured]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
-      <% else %>
-        <%= check_box_tag "content[featured]" %>
-      <% end %>
-    </div>
-
-    <div class="edit-content-submit">
-      <%= submit_tag "Submit Content" %>
-    </div>
-
-  <% end %>
-
 </div>
 
-    <% end %>
-
-</div>
-    <% end %>
-  </ol>
-
-<% end %>
-
-</div>
+<!-- REQUEST RESPONSE -->
+<div id="container"></div>
