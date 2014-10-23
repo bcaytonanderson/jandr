@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: "site#index"
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   get "/admin" => "users#index"
 
@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   end
 
   resources :contents, :only => [:index, :show, :edit, :update, :delete]
+
+  resources :images, :only => [:create, :update, :delete]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

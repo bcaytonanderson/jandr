@@ -1,3 +1,5 @@
+<div class="dashboard">
+
 <h1>Admin</h1>
 
 <% if current_user %>
@@ -8,7 +10,7 @@
 
 <% if @site != nil %>
 
-  <%= form_tag "/site/#{@site.id}", method: :put do %>
+  <%= form_tag "/site/#{@site.id}", method: :put, remote: true do %>
 
     <div class="site-name">
       <%= label_tag "site[name]", "Name:" %><br/>
@@ -20,9 +22,9 @@
       <%= text_field_tag "site[headline]", "#{@site.headline}" %>
     </div>
 
+
     <div class="site-logo">
-      <%= label_tag "site[logo]", "Logo:" %><br/>
-      <%= file_field_tag "site[logo]" %>
+      <%#= image_tag "hello.jpg" %>
     </div>
 
     <div class="site-theme">
@@ -35,16 +37,112 @@
 
   <% end %>
 
+<%= form_tag "/site/#{@site.id}", method: :put do %>
+
+    <div class="site-logo">
+      <%#= label_tag "site[picture]", "Logo:" %><br/>
+      <%#= file_field_tag "picture" %>
+    </div>
+
+    <div class="site-logo">
+      <!-- <h3>Current logo</h3> -->
+      <%#= image_tag "hello.jpg" %>
+    </div>
+
+<% end %>
+
+  <div id="container"></div>
+
   <h3>Groups</h3>
   <div class="group-create">
-    <%= link_to "Create a Group","/groups/new" %>
+    <%= link_to "Create a Group", new_group_path, remote: true %>
   </div>
+  <div class="new-group-form" style="display:none;"></div>
   <ol>
     <% @groups.each do |group| %>
       <li>
-        <%= link_to "Edit #{group.name}", "/groups/#{group.id}/edit" %>
+        <%= link_to "Edit #{group.name}", "/groups/#{group.id}/edit"%>
       </li>
+      <div class="edit-group">
+  <%= form_tag "/groups/#{group.id}", method: :put, remote: true do %>
+
+    <div class="edit-group-name">
+      <%= label_tag "group[name]", "Name:" %>
+      <%= text_field_tag "group[name]", "#{group.name}" %>
+    </div>
+
+    <div class="edit-group-nav">
+      <%= label_tag "group[nav]", "In the Navbar:" %>
+      <% if group.nav %>
+        <input checked="checked" id="group[nav]" name="group[nav]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
+      <% else %>
+        <%= check_box_tag "group[nav]" %>
+      <% end %>
+    </div>
+
+    <div class="edit-group-submit">
+      <%= submit_tag "Submit" %>
+    </div>
+
+  <% end %>
+
+  <h3>Contents</h3>
+  <% @contents = Content.where(group_id: group.id) %>
+  <div class="content-create">
+    <%= link_to "Create Content","/groups/#{group.id}/contents/new", remote: true %>
+  </div>
+  <ol>
+    <% @contents.each do |content| %>
+      <li>
+        <%#= link_to "Edit #{content.title}", "/contents/#{content.id}/edit" %>
+      </li>
+      <div class="edit-content">
+
+  <%= form_tag "/contents/#{content.id}", method: :put, remote: true do %>
+
+    <div class="edit-content-title">
+      <%= label_tag "content[title]", "Title:" %><br/>
+      <%= text_field_tag "content[title]", "#{content.title}" %>
+    </div>
+
+    <div class="edit-content-subtitle">
+      <%= label_tag "content[subtitle]", "Subtitle:" %><br/>
+      <%= text_field_tag "content[subtitle]", "#{content.subtitle}" %>
+    </div>
+
+    <div class="edit-content-image">
+      <%= label_tag "content[image]", "Image:" %><br/>
+      <%= file_field_tag "content[image]" %>
+    </div>
+
+    <div class="edit-content-story">
+      <%= label_tag "content[story]", "Story:" %><br/>
+      <%= text_area_tag "content[story]", "#{content.story}" %>
+    </div>
+
+    <div class="edit-content-featured">
+      <%= label_tag "content[featured]", "Featured:" %><br/>
+      <% if content.featured %>
+        <input checked="checked" id="content[featured]" name="content[featured]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
+      <% else %>
+        <%= check_box_tag "content[featured]" %>
+      <% end %>
+    </div>
+
+    <div class="edit-content-submit">
+      <%= submit_tag "Submit Content" %>
+    </div>
+
+  <% end %>
+
+</div>
+
+    <% end %>
+
+</div>
     <% end %>
   </ol>
 
 <% end %>
+
+</div>

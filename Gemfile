@@ -75,3 +75,5 @@ gem 'devise'
 gem 'pry-byebug'
 
 gem 'bower-rails'
+
+gem 'remotipart', '~> 1.2'

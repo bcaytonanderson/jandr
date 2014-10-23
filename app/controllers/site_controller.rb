@@ -2,7 +2,9 @@ class SiteController < ApplicationController
 
   def index
     @site = Site.find_by(user_id: current_user.id)
-    @groups = @site.groups
+    if @site
+      @groups = @site.groups
+    end
   end
 
   def create
@@ -26,8 +28,13 @@ class SiteController < ApplicationController
 
   def update
     @site = Site.find_by(user_id: current_user.id)
+
+    if params["picture"]
+      @site.picture = File.read(params["picture"])
+      @site.save
+    end
     @site.update(site_params)
-    redirect_to '/admin'
+    # redirect_to '/admin'
   end
 
   private

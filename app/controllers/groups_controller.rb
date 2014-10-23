@@ -1,6 +1,13 @@
 class GroupsController < ApplicationController
+  respond_to :html, :js
 
   def index
+    @groups = Group.all
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
@@ -30,7 +37,7 @@ class GroupsController < ApplicationController
       @group.save
     end
     @group.update(group_params)
-    redirect_to "/groups/#{@group.id}/edit"
+    redirect_to "/admin"
   end
 
   def delete
@@ -39,7 +46,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :nav)
+    params.require(:group).permit(:name)
   end
 
 end

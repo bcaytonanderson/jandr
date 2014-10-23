@@ -31,7 +31,7 @@ class ContentsController < ApplicationController
       @content.save
     end
     @content.update(content_params)
-    redirect_to "/contents/#{@content.id}/edit"
+    redirect_to "/admin"
   end
 
   def delete
