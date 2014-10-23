@@ -7,7 +7,7 @@
     <%= link_to 'Sign In', new_user_session_path %>
   <% end %>
 
-  <h1>Admin for <%= @site.name %></h1>
+  <h1>Dashboard for <%= @site.name %></h1>
 
 <!-- IF SITE HAS BEEN CREATED -->
   <% if @site != nil %>
@@ -28,12 +28,6 @@
           <%= text_field_tag "site[headline]", "#{@site.headline}" %>
         </div>
 
-        <!-- DISPLAY CURRENT SITE LOGO -->
-        <div class="site-logo">
-          <h3>Current Site Logo</h3>
-          <%#= image_tag "site-logo.jpg" %>
-        </div>
-
         <!-- SITE THEME / OPTIONAL -->
         <div class="site-theme">
           <%#= label_tag "site[theme]", "Theme:" %><br/>
@@ -41,7 +35,41 @@
         </div>
 
         <!-- EDIT SITE SUBMIT BUTTON -->
-        <%= submit_tag "Submit" %>
+        <%= submit_tag "Submit Site Text" %>
+
+      <% end %>
+
+      <!-- DISPLAY CURRENT SITE LOGO -->
+      <div class="site-logo">
+        <h4>Current Site Logo</h4>
+        <% if @logo %>
+          <%= image_tag "/images/#{@logo.id}" %>
+        <% end %>
+      </div>
+
+      <!-- UPLOAD LOGO FORM -->
+      <% if @logo != nil %>
+        <% @logo_url = "/images/#{@logo.id}" %>
+        <% @logo_request = :put %>
+      <% else %>
+        <% @logo_url = "/images" %>
+        <% @logo_request = :post %>
+      <% end %>
+      <%= form_tag "#{@logo_url}", method: @logo_request, multipart: true do %>
+
+        <!-- FILE UPLOAD FOR LOGO -->
+        <div class="site-logo">
+          <%= label_tag "picture", "New Logo:" %><br/>
+          <%= file_field_tag "picture" %>
+        </div>
+
+        <!-- SUBMIT BUTTON AND WARNING -->
+        <div class="site-logo">
+          <%= submit_tag "Upload Logo" %>
+          <p class="warning-text">Clicking Upload Logo will refresh the page. Be sure to save all your information first!</p>
+        </div>
+
+        <%= hidden_field(:image, :imageable, value: "site") %>
 
       <% end %>
 
@@ -83,7 +111,7 @@
 
             <!-- EDIT GROUP SUBMIT BUTTON -->
             <div class="edit-group-submit">
-              <%= submit_tag "Submit" %>
+              <%= submit_tag "Submit Group" %>
             </div>
 
           <% end %>
@@ -92,7 +120,7 @@
 
         <!-- CREATE NEW CONTENT / BUILD AJAX FORM REQUEST AND INSERT IT ON DOM -->
         <div class="content-create">
-          <%#= link_to "Create Content","/groups/#{group.id}/contents/new", remote: true %>
+          <%= link_to "Create Content for #{group.name}","/groups/#{group.id}/contents/new", remote: true %>
         </div>
         <div class="new-content-form" style="display:none;"></div>
 
@@ -150,22 +178,25 @@
 </div><!-- //DASHBOARD -->
 
 
-<div class="image-uploader">
+<!-- <div class="image-uploader"> -->
   <!-- IMAGE UPLOADER -->
-  <%= form_tag "/site/#{@site.id}", method: :put do %>
+  <%#= form_tag "/site/#{@site.id}", method: :put do %>
+      <!-- <h2 class="image-uploader-header">Image Uploader</h2> -->
 
+      <div class="site-logo">
+        <!-- <h4>Current logo</h4> -->
+        <%#= image_tag "hello.jpg" %>
+      </div>
       <div class="site-logo">
         <%#= label_tag "site[picture]", "Logo:" %><br/>
         <%#= file_field_tag "picture" %>
       </div>
 
       <div class="site-logo">
-        <!-- <h3>Current logo</h3> -->
-        <%#= image_tag "hello.jpg" %>
+        <%#= submit_tag "Upload Logo" %>
       </div>
-
-  <% end %>
-</div>
+  <%# end %>
+<!-- </div> -->
 
 <!-- REQUEST RESPONSE -->
 <div id="container"></div>

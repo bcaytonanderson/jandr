@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023154112) do
+ActiveRecord::Schema.define(version: 20141023220209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20141023154112) do
   create_table "contents", force: true do |t|
     t.string   "title"
     t.string   "subtitle"
-    t.string   "image_key"
     t.text     "story"
     t.boolean  "featured"
     t.integer  "group_id"
@@ -41,21 +40,19 @@ ActiveRecord::Schema.define(version: 20141023154112) do
 
   create_table "images", force: true do |t|
     t.binary   "data"
-    t.string   "imageable"
     t.integer  "imageable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "imageable_type"
   end
 
   create_table "sites", force: true do |t|
     t.string   "name"
     t.string   "headline"
-    t.string   "logo_key"
     t.string   "theme"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.binary   "picture"
   end
 
   add_index "sites", ["user_id"], name: "index_sites_on_user_id", using: :btree

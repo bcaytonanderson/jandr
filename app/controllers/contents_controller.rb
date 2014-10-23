@@ -1,7 +1,5 @@
 class ContentsController < ApplicationController
 
-
-
   def index
   end
 
@@ -45,5 +43,5 @@ class ContentsController < ApplicationController
   def content_params
     params.require(:content).permit(:title, :subtitle, :story, :featured)
   end
-  
+
 end
