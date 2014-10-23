@@ -76,4 +76,3 @@ gem 'pry-byebug'
 
 gem 'bower-rails'
 
-ruby '2.1.2'

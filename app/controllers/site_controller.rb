@@ -1,5 +1,7 @@
 class SiteController < ApplicationController
 
+
+
   def index
     @site = Site.find_by(user_id: current_user.id)
     @groups = @site.groups
@@ -8,7 +10,7 @@ class SiteController < ApplicationController
   def create
   end
 
-  def new
+  def new 
   end
 
   def edit
@@ -27,5 +29,6 @@ class SiteController < ApplicationController
   def site_params
     params.require(:site).permit(:title, :headline)
   end
+
 
 end
