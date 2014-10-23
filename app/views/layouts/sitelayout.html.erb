@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="newspaper.css">
+    <body>
+
+     <nav class='navbar clear'>
+      <div class='nav-brand'><%= @site.name %></div>
+      <div class='nav-links'>
+        <ul>
+        <%= @groups.each do |x| %>
+          <% if x.nav = true %>
+          <li>
+            <%= link_to x.name,group_path(x.id)%> 
+          </li>
+          <% end %>
+        <% end %>
+        </ul>
+      </div>
+    </nav>
+
+<% yield %>
+
+  </body>
+</html>

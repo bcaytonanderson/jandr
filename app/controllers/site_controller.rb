@@ -1,5 +1,7 @@
 class SiteController < ApplicationController
 
+
+
   def index
     @site = Site.find_by(user_id: current_user.id)
     if @site
@@ -42,5 +44,6 @@ class SiteController < ApplicationController
   def site_params
     params.require(:site).permit(:name, :headline)
   end
+
 
 end

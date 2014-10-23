@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag 'reset', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag 'newspaper', 'data-turbolinks-track' => true %>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="newspaper.css">
+
+     <nav class='navbar clear'>
+      <%= link_to root_path do %> <div class='nav-brand'><%= @content.group.site.name %></div><% end %>
+      <div class='nav-links'>
+        <ul>
+        <% @content.group.site.groups.each do |x| %>
+          <% if x.nav = true %>
+          <li>
+            <%= link_to x.name,group_path(x.id)%> 
+          </li>
+          <% end %>
+        <% end %>
+        </ul>
+      </div>
+    </nav>
+
+<section class='page-container content'>
+<h1><%= @content.title %></h1>
+<img src=<%= @content.image_key%>>
+<h2><%= @content.subtitle %></h2>
+<h3><%= @content.created_at %></h3>
+<p><%= @content.story%></p>
+</section>
