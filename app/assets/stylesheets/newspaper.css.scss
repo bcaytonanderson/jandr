@@ -76,7 +76,7 @@ section.page-container {
 }
 
 section.page-container.content {
-  box-shadow: 1px 1px 10px .5px gray;
+  box-shadow: 1px 1px 10px .5px #d4d3d1;
 }
 
 section.page-container img {
@@ -104,14 +104,14 @@ section.page-container h3 {
 }
 section.page-container p {
   font-size: 1.5em;
-  margin: 0 1em 0 1em;
+  margin: 0 1em 1em 1em;
   text-align: justify;
 }
 section.page-container p:nth-child(2) {
   margin: 0 20px 0 20px;
 }
 section.page-container article.featured-post {
-  box-shadow: 1px 1px 10px .5px gray;
+  box-shadow: 1px 1px 10px .5px #d4d3d1;
   padding: 10px;
   margin: 10px auto;
 }
@@ -138,7 +138,7 @@ section.page-container article.featured-post p {
 }
 section.page-container article.article-link {
 
-  box-shadow: 1px 1px 10px .5px gray;
+  box-shadow: 1px 1px 10px .5px #d4d3d1;
   padding: 10px;
   margin: 10px auto;
 }
