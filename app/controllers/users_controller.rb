@@ -5,9 +5,13 @@ class UsersController < ApplicationController
     @site = Site.find_by(user_id: current_user.id)
     if @site != nil
       @groups = @site.groups
-      new_image = File.new(Rails.root.join("public/assets/images/hello.jpg"), "w")
-      new_image.syswrite(@site.picture)
-      new_image.close
+      @logo = Image.find_by(imageable_type: "site", imageable_id: @site.id)
+        # binding.pry
+      # if @logo != nil
+        # new_image = File.new(Rails.root.join("public/assets/images/logo.jpg"), "w") images_controller:
+        # new_image.syswrite(@logo.data)
+        # new_image.close
+      # end
     else
       redirect_to '/site/new'
     end

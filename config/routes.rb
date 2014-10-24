@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :contents, :only => [:index, :show, :edit, :update, :delete]
 
-  resources :images, :only => [:create, :update, :delete]
+  resources :images, :only => [:create, :show, :update, :delete]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

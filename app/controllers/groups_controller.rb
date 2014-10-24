@@ -1,13 +1,7 @@
 class GroupsController < ApplicationController
-  respond_to :html, :js
 
   def index
     @groups = Group.all
-
-    respond_to do |format|
-      format.html
-      format.json
-    end
   end
 
   def create
@@ -47,7 +41,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :nav)
   end
 
 end

@@ -1,12 +1,9 @@
 class SiteController < ApplicationController
 
-
-
   def index
-    @site = Site.first
-    if @site
-      @groups = @site.groups
-    end
+    @site = Site.all.first
+    @groups = @site.groups
+    @logo = Image.where(imageable: "site", imageable_id: @site.id).first
   end
 
   def create
@@ -30,13 +27,7 @@ class SiteController < ApplicationController
 
   def update
     @site = Site.find_by(user_id: current_user.id)
-
-    if params["picture"]
-      @site.picture = File.read(params["picture"])
-      @site.save
-    end
     @site.update(site_params)
-    # redirect_to '/admin'
   end
 
   private
