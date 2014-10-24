@@ -1,177 +1,351 @@
 <div class="dashboard">
 
   <!-- SIGN OUT -->
-  <% if current_user %>
-    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to 'Sign In', new_user_session_path %>
-  <% end %>
+  <div class="header clear">
+    <% if current_user %>
+      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path %>
+    <% end %>
 
-  <h1>Dashboard for <%= @site.name %></h1>
+    <h1><span class="jandr">Jandr</span> Dashboard</h1>
+  </div>
+
+  <div class="border"></div>
 
 <!-- IF SITE HAS BEEN CREATED -->
   <% if @site != nil %>
 
     <!-- EDIT SITE FORM / AJAX -->
     <div class="edit-site">
-      <%= form_tag "/site/#{@site.id}", method: :put, remote: true do %>
+      <div class="edit-site-data clear">
+        <%= form_tag "/site/#{@site.id}", class: "site-data-form", method: :put, remote: true do %>
 
-        <!-- SITE NAME -->
-        <div class="site-name">
-          <%= label_tag "site[name]", "Name:" %><br/>
-          <%= text_field_tag "site[name]", "#{@site.name}" %>
-        </div>
+          <!-- <div class="data"> -->
+            <!-- SITE NAME -->
+            <div class="site-name site-data">
+              <%= label_tag "site[name]", "Site Name:", class: "site-data-label" %><br/>
+              <%= text_field_tag "site[name]", "#{@site.name}", class: "site-data-input" %>
+            </div>
 
-        <!-- SITE HEADLINE -->
-        <div class="site-headline">
-          <%= label_tag "site[headline]", "Headline:" %><br/>
-          <%= text_field_tag "site[headline]", "#{@site.headline}" %>
-        </div>
+            <!-- SITE HEADLINE -->
+            <div class="site-headline site-data">
+              <%= label_tag "site[headline]", "Headline:", class: "site-data-label"  %><br/>
+              <%= text_field_tag "site[headline]", "#{@site.headline}", class: "site-data-input" %>
+            </div>
+          <!-- </div> -->
 
-        <!-- SITE THEME / OPTIONAL -->
-        <div class="site-theme">
-          <%#= label_tag "site[theme]", "Theme:" %><br/>
-          <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
-        </div>
+          <!-- EDIT SITE SUBMIT BUTTON -->
+          <div class="site-submit site-data">
+            <%= submit_tag "Submit Site Info", class: "site-data-submit-button submit" %>
+          </div>
 
-        <!-- EDIT SITE SUBMIT BUTTON -->
-        <%= submit_tag "Submit Site Text" %>
+          <!-- SITE THEME / OPTIONAL -->
+          <!-- <div class="site-theme"> -->
+            <%#= label_tag "site[theme]", "Theme:" %>
+            <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
+          <!-- </div> -->
 
-      <% end %>
+        <% end %>
+      </div><!-- //EDIT SITE DATA -->
 
       <!-- DISPLAY CURRENT SITE LOGO -->
-      <div class="site-logo">
-        <h4>Current Site Logo</h4>
-        <% if @logo %>
-          <%= image_tag "/images/#{@logo.id}" %>
-        <% end %>
-      </div>
-
-      <!-- UPLOAD LOGO FORM -->
-      <% if @logo != nil %>
-        <% @logo_url = "/images/#{@logo.id}" %>
-        <% @logo_request = :put %>
-      <% else %>
-        <% @logo_url = "/images" %>
-        <% @logo_request = :post %>
-      <% end %>
-      <%= form_tag "#{@logo_url}", method: @logo_request, multipart: true do %>
-
-        <!-- FILE UPLOAD FOR LOGO -->
-        <div class="site-logo">
-          <%= label_tag "picture", "New Logo:" %><br/>
-          <%= file_field_tag "picture" %>
+      <div class="edit-site-logo">
+        <div class="current-logo">
+          <h4 class="site-logo-header">Current Site Logo:</h4>
+          <% if @logo %>
+            <%= image_tag "/images/#{@logo.id}", class: "current-site-logo" %>
+          <% end %>
         </div>
 
-        <!-- SUBMIT BUTTON AND WARNING -->
-        <div class="site-logo">
-          <%= submit_tag "Upload Logo" %>
-          <p class="warning-text">Clicking Upload Logo will refresh the page. Be sure to save all your information first!</p>
-        </div>
+        <div class="border"></div>
 
-        <%= hidden_field(:image, :imageable, value: "site") %>
+        <div class="new-site-logo">
+          <!-- UPLOAD LOGO FORM -->
+          <% if @logo != nil %>
+            <% @logo_url = "/images/#{@logo.id}" %>
+            <% @logo_request = :put %>
+          <% else %>
+            <% @logo_url = "/images" %>
+            <% @logo_request = :post %>
+          <% end %>
+          <%= form_tag "#{@logo_url}", method: @logo_request, multipart: true do %>
 
-      <% end %>
+            <!-- FILE UPLOAD FOR LOGO -->
+            <div class="site-logo">
+              <%= label_tag "picture", "Create New Logo:", class: "update-logo" %>
+              <p class="warning-text">Logo should be 800px wide x 150px high.</p>
+              <%= file_field_tag "picture", class: "logo-input" %>
+            </div>
+
+            <!-- SUBMIT BUTTON AND WARNING -->
+            <div class="site-logo">
+              <%= submit_tag "Upload Logo", class: "submit-logo" %>
+              <p class="warning-text">Clicking Upload Logo will refresh the page. Be sure to save all your information first!</p>
+            </div>
+
+            <%= hidden_field(:image, :imageable_type, value: "site") %>
+            <%= hidden_field(:image, :imageable_id, value: @site.id) %>
+
+          <% end %>
+        </div><!-- //NEW SITE LOGO -->
+
+      </div><!-- //EDIT SITE LOGO -->
 
     </div><!-- //EDIT SITE FORM -->
 
     <!-- CREATE NEW GROUP / BUILD AJAX FORM REQUEST AND INSERT IT ON DOM -->
-    <div class="group-create">
-      <%= link_to "Create a Group", new_group_path, remote: true %>
+    <!-- <div class="create-group"> -->
+      <%#= link_to "Create a Group", new_group_path, remote: true, class: "create-group-button" %>
+    <!-- </div> -->
+    <h4 class="create-group-button">Create New Group</h4>
+    <script>
+      $(document).ready(function(){
+        $('.new-group-form').slideUp();
+
+        $('.create-group-button').on('click', function(){
+          $('.new-group-form').slideToggle();
+        });
+
+      });
+
+    </script>
+
+    <div class="new-group-form">
+      <%= form_tag "/groups", method: :post do %>
+
+        <div class="create-group-name">
+          <%= label_tag "group[name]", "Group Name:" %><br/>
+          <%= text_field_tag "group[name]" %>
+        </div>
+
+        <div class="create-group-nav">
+          <%= label_tag "group[nav]", "In the Navbar:" %>
+          <%= check_box_tag "group[nav]" %>
+        </div>
+
+        <div class="create-group-submit">
+          <%= submit_tag "Create New Group", class: "create-group-submit" %>
+          <p class="warning-text">Clicking Create New Group will refresh the page. Be sure to save all your information first!</p>
+        </div>
+
+      <% end %>
+
     </div>
-    <div class="new-group-form" style="display:none;"></div>
 
     <!-- GROUPS -->
     <div class="edit-groups">
-      <h3>Current Groups</h3>
       <% @groups.each do |group| %>
 
+        <script>
+          $(document).ready(function(){
+            $('.edit-group-'+<%= group.id %>+'-form').slideUp();
+
+            $('.edit-group-'+<%= group.id %>).on('click', function(){
+              $('.edit-group-'+<%= group.id %>+'-form').slideToggle();
+            });
+
+          });
+        </script>
         <!-- MAKE LINK THAT SHOWS THE EDIT GROUP FORM BELOW IT -->
-        <%#= link_to "#{group.name}", "/groups/#{group.id}/edit", class: "edit-group" %>
+        <h4 class="edit-group-button edit-group-<%= group.id %>">Edit <%= group.name %></h4>
 
         <!-- EDIT GROUP FORM / AJAX-->
-        <div class="edit-group-form">
-          <%= form_tag "/groups/#{group.id}", method: :put, remote: true do %>
+        <div class="edit-group-<%= group.id %>-form edit-group-form">
 
-            <!-- EDIT GROUP NAME -->
-            <div class="edit-group-name">
-              <%= label_tag "group[name]", "Name:" %>
-              <%= text_field_tag "group[name]", "#{group.name}" %>
-            </div>
+          <div class="edit-group-data">
+            <%= form_tag "/groups/#{group.id}", method: :put, remote: true do %>
 
-            <!-- EDIT WHETHER GROUP IS IN NAVBAR -->
-            <div class="edit-group-nav">
-              <%= label_tag "group[nav]", "In the Navbar:" %>
-              <% if group.nav %>
-                <input checked="checked" id="group[nav]" name="group[nav]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
-              <% else %>
-                <%= check_box_tag "group[nav]" %>
-              <% end %>
-            </div>
-
-            <!-- EDIT GROUP SUBMIT BUTTON -->
-            <div class="edit-group-submit">
-              <%= submit_tag "Submit Group" %>
-            </div>
-
-          <% end %>
-        </div><!-- EDIT GROUP FORM -->
-
-
-        <!-- CREATE NEW CONTENT / BUILD AJAX FORM REQUEST AND INSERT IT ON DOM -->
-        <div class="content-create">
-          <%= link_to "Create Content for #{group.name}","/groups/#{group.id}/contents/new", remote: true %>
-        </div>
-        <div class="new-content-form" style="display:none;"></div>
-
-        <!-- CONTENTS -->
-        <h3>Contents</h3>
-        <% @contents = Content.where(group_id: group.id) %>
-        <% @contents.each do |content| %>
-
-          <!-- MAKE LINK THAT SHOWS THE EDIT CONTENT FORM BELOW IT -->
-          <%#= link_to "Edit #{content.title}", "/contents/#{content.id}/edit" %>
-
-          <!-- EDIT CONTENT FORM / AJAX -->
-          <div class="edit-content-form">
-            <%= form_tag "/contents/#{content.id}", method: :put, remote: true do %>
-
-              <!-- EDIT CONTENT TITLE -->
-              <div class="edit-content-title">
-                <%= label_tag "content[title]", "Title:" %><br/>
-                <%= text_field_tag "content[title]", "#{content.title}" %>
+              <!-- EDIT GROUP NAME -->
+              <div class="edit-group-name">
+                <%= label_tag "group[name]", "Group Name:", class: "edit-group-label" %><br/>
+                <%= text_field_tag "group[name]", "#{group.name}", class: "edit-group-input" %>
               </div>
 
-              <!-- EDIT CONTENT SUBTITLE -->
-              <div class="edit-content-subtitle">
-                <%= label_tag "content[subtitle]", "Subtitle:" %><br/>
-                <%= text_field_tag "content[subtitle]", "#{content.subtitle}" %>
-              </div>
-
-              <!-- EDIT CONTENT STORY -->
-              <div class="edit-content-story">
-                <%= label_tag "content[story]", "Story:" %><br/>
-                <%= text_area_tag "content[story]", "#{content.story}" %>
-              </div>
-
-              <!-- EDIT WHETHER CONTENT IS FEATURED CONTENT -->
-              <div class="edit-content-featured">
-                <%= label_tag "content[featured]", "Featured:" %><br/>
-                <% if content.featured %>
-                  <input checked="checked" id="content[featured]" name="content[featured]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
+              <!-- EDIT WHETHER GROUP IS IN NAVBAR -->
+              <div class="edit-group-nav">
+                <%= label_tag "group[nav]", "In the Navbar:", class: "edit-group-label"  %>
+                <% if group.nav %>
+                  <input checked="checked" id="group[nav]" name="group[nav]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
                 <% else %>
-                  <%= check_box_tag "content[featured]" %>
+                  <%= check_box_tag "group[nav]" %>
                 <% end %>
               </div>
 
-              <!-- EDIT CONTENT SUBMIT BUTTON -->
-              <div class="edit-content-submit">
-                <%= submit_tag "Submit Content" %>
+              <!-- EDIT GROUP SUBMIT BUTTON -->
+              <div class="edit-group-submit">
+                <%= submit_tag "Submit Group Info", class: "edit-group-submit-button" %>
               </div>
 
-            <% end %><!-- //EDIT CONTENT FORM -->
-          </div><!-- //EDIT CONTENT FORM -->
-        <% end %><!-- //CONTENT ITERATION -->
+            <% end %>
+          </div>
+
+          <!-- CREATE NEW CONTENT / BUILD AJAX FORM REQUEST AND INSERT IT ON DOM -->
+          <!-- <div class="create-content"> -->
+            <%#= link_to "Create Content for #{group.name}","/groups/#{group.id}/contents/new", remote: true %>
+          <!-- </div> -->
+          <!-- <div class="new-content-form" style="display:none;"></div> -->
+
+          <h4 class="create-content-button">Create New Content for <%= group.name %></h4>
+          <script>
+            $(document).ready(function(){
+              $('.new-content-form').slideUp();
+              $('.create-content-button').off('click');
+              $('.create-content-button').on('click', function(){
+                $('.new-content-form').slideToggle();
+              });
+
+            });
+
+          </script>
+
+          <div class="new-content-form">
+            <%= form_tag "/groups/#{group.id}/contents", method: :post do %>
+
+              <div class="new-content-title">
+                <%= label_tag "content[title]", "Title:", class: "new-content-label" %><br/>
+                <%= text_field_tag "content[title]","", class: "new-content-input" %>
+              </div>
+
+              <div class="new-content-subtitle">
+                <%= label_tag "content[subtitle]", "Subtitle:", class: "new-content-label" %><br/>
+                <%= text_field_tag "content[subtitle]","", class: "new-content-input" %>
+              </div>
+
+              <!-- <div class="new-content-image"> -->
+                <%#= label_tag "content[image]", "Image:", class: "new-content-label" %>
+                <%#= file_field_tag "content[image]" %>
+              <!-- </div> -->
+
+              <div class="new-content-story">
+                <%= label_tag "content[story]", "Story:", class: "new-content-label" %><br/>
+                <%= text_area_tag "content[story]","", class: "new-content-input new-content-story" %>
+              </div>
+
+              <div class="new-content-featured">
+                <%= label_tag "content[featured]", "Featured:", class: "new-content-label" %>
+                <%= check_box_tag "content[featured]","", class: "new-content-input" %>
+              </div>
+
+              <div class="new-content-submit">
+                <%= submit_tag "Create New Content", class: "new-content-submit-button" %>
+                <p class="warning-text">Clicking Create New Content will refresh the page. Be sure to save all your information first!</p>
+              </div>
+
+            <% end %>
+
+          </div>
+
+
+          <!-- CONTENTS -->
+          <% @contents = Content.where(group_id: group.id) %>
+          <% @contents.each do |content| %>
+
+            <script>
+              $(document).ready(function(){
+                $('.edit-content-'+<%= content.id %>+'-form').slideUp();
+
+                $('.edit-content-'+<%= content.id %>).on('click', function(){
+                  $('.edit-content-'+<%= content.id %>+'-form').slideToggle();
+                });
+
+              });
+            </script>
+
+            <!-- MAKE LINK THAT SHOWS THE EDIT CONTENT FORM BELOW IT -->
+            <h4 class="edit-content-<%= content.id %> edit-content-button">Edit <%= content.title %></h4>
+            <script>
+              $(document).ready(function(){
+                $('.edit-content-'+<%= content.id %>+'-form').slideUp();
+                $('.edit-content-'+<%= content.id %>).off('click');
+                $('.edit-content-'+<%= content.id %>).on('click', function(){
+                  $('.edit-content-'+<%= content.id %>+'-form').slideToggle();
+                });
+
+              });
+            </script>
+
+            <!-- EDIT CONTENT FORM / AJAX -->
+            <div class="edit-content-<%= content.id %>-form edit-content-form">
+              <div class="edit-content-data">
+                <%= form_tag "/contents/#{content.id}", method: :put, remote: true do %>
+
+                  <!-- EDIT CONTENT TITLE -->
+                  <div class="edit-content-title">
+                    <%= label_tag "content[title]", "Title:", class: "edit-content-label" %><br/>
+                    <%= text_field_tag "content[title]", "#{content.title}", class: "edit-content-input" %>
+                  </div>
+
+                  <!-- EDIT CONTENT SUBTITLE -->
+                  <div class="edit-content-subtitle">
+                    <%= label_tag "content[subtitle]", "Subtitle:", class: "edit-content-label" %><br/>
+                    <%= text_field_tag "content[subtitle]", "#{content.subtitle}", class: "edit-content-input" %>
+                  </div>
+
+                  <!-- EDIT CONTENT STORY -->
+                  <div class="edit-content-story">
+                    <%= label_tag "content[story]", "Story:", class: "edit-content-label" %><br/>
+                    <%= text_area_tag "content[story]", "#{content.story}", class: "edit-content-input" %>
+                  </div>
+
+                  <!-- EDIT WHETHER CONTENT IS FEATURED CONTENT -->
+                  <div class="edit-content-featured">
+                    <%= label_tag "content[featured]", "Featured:", class: "edit-content-label" %><br/>
+                    <% if content.featured %>
+                      <input checked="checked" id="content[featured]" name="content[featured]" type="checkbox" /><!-- Went around form helpers because value was changing with "checked" -->
+                    <% else %>
+                      <%= check_box_tag "content[featured]" %>
+                    <% end %>
+                  </div>
+
+                  <!-- EDIT CONTENT SUBMIT BUTTON -->
+                  <div class="edit-content-submit">
+                    <%= submit_tag "Submit Content Info", class: "edit-content-submit-button" %>
+                  </div>
+
+                <% end %><!-- //EDIT CONTENT FORM -->
+              </div>
+              <!-- GET CONTENT IMAGE -->
+              <% @content_image = Image.find_by(imageable_type: "content", imageable_id: content.id) %>
+
+              <!-- DISPLAY CURRENT CONTENT IMAGE -->
+              <div class="content-image">
+                <h4 class="content-image-header">Current Content Image:</h4>
+                <% if @content_image %>
+                  <%= image_tag "/images/#{@content_image.id}", class: "current-content-image" %>
+                <% end %>
+
+                <!-- UPLOAD CONTENT IMAGE FORM -->
+                <% if @content_image != nil %>
+                  <% @image_url = "/images/#{@content_image.id}" %>
+                  <% @image_request = :put %>
+                <% else %>
+                  <% @image_url = "/images" %>
+                  <% @image_request = :post %>
+                <% end %>
+                <%= form_tag "#{@image_url}", method: @image_request, multipart: true do %>
+
+                  <!-- FILE UPLOAD FOR LOGO -->
+                  <div class="content-image-picutre">
+                    <%= label_tag "picture", "New Content Image:", class: "new-content-image-header" %>
+                    <p class="warning-text">Content Image should have equal width and height. For example: 300px x 300px.</p>
+                    <%= file_field_tag "picture", class: "new-content-image-input" %>
+                  </div>
+
+                  <!-- SUBMIT BUTTON AND WARNING -->
+                  <div class="content-image-submit">
+                    <%= submit_tag "Upload Content Image", class: "content-image-submit-button" %>
+                    <p class="warning-text">Clicking Upload Content Image will refresh the page. Be sure to save all your information first!</p>
+                  </div>
+
+                  <%= hidden_field(:image, :imageable_type, value: "content") %>
+                  <%= hidden_field(:image, :imageable_id, value: content.id) %>
+
+                <% end %><!-- //UPLOAD CONTENT IMAGE -->
+              </div><!-- //CONTENT IMAGE -->
+            </div><!-- //EDIT CONTENT FORM -->
+          <% end %><!-- //CONTENT ITERATION -->
+        </div><!-- EDIT GROUP FORM -->
       <% end %><!-- //GROUP ITERATION -->
     </div><!-- EDIT GROUPS -->
   <% end %><!-- //IF @SITE EXISTS -->
@@ -188,7 +362,7 @@
         <%#= image_tag "hello.jpg" %>
       </div>
       <div class="site-logo">
-        <%#= label_tag "site[picture]", "Logo:" %><br/>
+        <%#= label_tag "site[picture]", "Logo:" %>
         <%#= file_field_tag "picture" %>
       </div>
 

@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require_tree .
 //= require handlebars
 //= require ember
 //= require ember-data
@@ -8,7 +9,7 @@
 
 
 // for more details see: http://emberjs.com/guides/application/
-Jandr = Ember.Application.create({
+var Jandr = Ember.Application.create({
   LOG_TRANSITIONS: true
 });
 
