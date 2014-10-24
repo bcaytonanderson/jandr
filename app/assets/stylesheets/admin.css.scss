@@ -1,8 +1,8 @@
 * {
-  border: 1px solid black!important;
+  // border: !important;
+  padding: 5px!important;
+  margin: 7px!important;
 }
-
-
 
 div {
   border: none;
@@ -42,4 +42,25 @@ a {
 img {
   width: 200px;
   height: 100px;
+}
+h1, h2, h3, h4, h5, h6 {
+  background-color: yellow;
+}
+.dashboard {
+  background-color: purple;
+}
+.edit-site {
+  background-color: green;
+}
+.create-group {
+  background-color: gray;
+}
+.edit-group-form {
+  background-color: pink;
+}
+.create-content {
+  background-color: red;
+}
+.edit-content-form {
+  background-color: orange;
 }

@@ -3,7 +3,7 @@ class SiteController < ApplicationController
   def index
     @site = Site.all.first
     @groups = @site.groups
-    @logo = Image.where(imageable: "site", imageable_id: @site.id).first
+    @logo = Image.find_by(imageable_type: "site", imageable_id: @site.id)
   end
 
   def create
