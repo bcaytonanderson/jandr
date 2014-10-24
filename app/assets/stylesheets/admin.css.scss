@@ -1,56 +1,128 @@
+/********************************
+ * COLOR SCHEME / LIGHT TO DARK *
+ ********************************
+
+#63add0 - Lightest
+#3ca0d1
+#0770a0
+#245d7a
+#03476a - Darkest
+#ff8901 - Off Color
+
+*********************************/
+
 * {
   // border: !important;
-  padding: 5px!important;
-  margin: 7px!important;
+  font-family: Helvetica, Arial, sans-serif!important;
 }
-
-div {
-  border: none;
-}
-
 .dashboard {
-  width: 80%;
+  min-width: 300px;
+  position: relative;
   margin: 0 auto;
+  // background-color: black
 }
-
-input[type="submit"]{
-  margin: 10px 0;
+.header {
+  background-color:#3ca0d1;
+  height: 25px;
+  // min-width: 420px;
 }
-
-ul, li {
-  list-style-type: none;
-  padding-left: none;
+.header a {
+  float: right;
+  color: white!important;
+  font-size: 0.6em!important;
+  margin: 7px 10px 0 0;
 }
-
-h1, h2, h3, h4, h5, h6, label, div{
-  font-size: 1.2em!important;
-}
-
-a {
+.header a:hover {
   color: blue!important;
 }
-
-// .image-uploader {
-//   width: 400px;
-//   height: 400px;
-// }
-.image-uploader,
-.image-uploader-header,
-.site-logo {
-  // border: none;
+.header h1 {
+  float: left;
+  color: #03476a;
+  font-size: 1em!important;
+  margin: 5px 0 0 10px;
 }
-img {
-  width: 200px;
-  height: 100px;
+.jandr {
+  font-weight: bold;
 }
-h1, h2, h3, h4, h5, h6 {
-  background-color: yellow;
+.border {
+  height: 1px;
+  background-color: white;
+}
+.edit-site {
+  background-color:white;
+}
+.edit-site-data {
+  height: 40px;
+}
+.site-data-form {
+  margin: 0 auto;
+  width: 99.2%;
+}
+.site-data {
+  // position:absolute;
+  float: left;
+  height: 39px;
+  width: 33.15%;
+  background-color: #03476a;
+  color: #63add0;
+  border-right: 1px solid white;
+  // border-bottom: 1px solid white;
+  // border-left: 1px solid white;
+}
+.site-data-label{
+  // position:absolute;
+  margin: 9px 2px;
+  font-size: 1em!important;
+  position:relative;
+  top:2px;
+}
+.site-data-input{
+  margin: 5px 2px;
+  width: 80%;
+  height: 8px;
+  font-size: 0.7em;
+  line-height: 1;
+  // position:relative;
+  // top:-10px;
+}
+.site-submit {
+  border-right:none;
+}
+.site-data-submit-button {
+  color: white;
+  background-color: #ff8901;
+  font-size: 0.8em;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 11px 12px;
+}
+.edit-site-logo {
+  background-color: white;
+}
+.current-logo {
+  border: 1px solid black;
+  margin: 0 1px;
+}
+.site-logo-header {
+  font-size: 1em!important;
+  color: #3ca0d1;
+  margin: 4px 2px 2px;
+}
+.current-site-logo {
+  width: 150px;
+  height: 50px;
+  margin: 2px;
+}
+.update-logo {
+  font-size: 0.6em!important;
+  color: #3ca0d1;
+  margin: 4px 2px 2px;
 }
 .dashboard {
   background-color: purple;
 }
 .edit-site {
-  background-color: green;
+  // background-color: green;
 }
 .create-group {
   background-color: gray;

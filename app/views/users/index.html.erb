@@ -1,78 +1,89 @@
 <div class="dashboard">
 
   <!-- SIGN OUT -->
-  <% if current_user %>
-    <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to 'Sign In', new_user_session_path %>
-  <% end %>
+  <div class="header clear">
+    <% if current_user %>
+      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path %>
+    <% end %>
 
-  <h1>Dashboard for <%= @site.name %></h1>
+    <h1><span class="jandr">Jandr</span> Dashboard</h1>
+  </div>
+
+  <div class="border"></div>
 
 <!-- IF SITE HAS BEEN CREATED -->
   <% if @site != nil %>
 
     <!-- EDIT SITE FORM / AJAX -->
     <div class="edit-site">
-      <%= form_tag "/site/#{@site.id}", method: :put, remote: true do %>
+      <div class="edit-site-data clear">
+        <%= form_tag "/site/#{@site.id}", class: "site-data-form", method: :put, remote: true do %>
 
-        <!-- SITE NAME -->
-        <div class="site-name">
-          <%= label_tag "site[name]", "Name:" %><br/>
-          <%= text_field_tag "site[name]", "#{@site.name}" %>
-        </div>
+          <!-- SITE NAME -->
+          <div class="site-name site-data">
+            <%= label_tag "site[name]", "Name:", class: "site-data-label" %><br/>
+            <%= text_field_tag "site[name]", "#{@site.name}", class: "site-data-input" %>
+          </div>
 
-        <!-- SITE HEADLINE -->
-        <div class="site-headline">
-          <%= label_tag "site[headline]", "Headline:" %><br/>
-          <%= text_field_tag "site[headline]", "#{@site.headline}" %>
-        </div>
+          <!-- SITE HEADLINE -->
+          <div class="site-headline site-data">
+            <%= label_tag "site[headline]", "Headline:", class: "site-data-label"  %><br/>
+            <%= text_field_tag "site[headline]", "#{@site.headline}", class: "site-data-input" %>
+          </div>
 
-        <!-- SITE THEME / OPTIONAL -->
-        <div class="site-theme">
-          <%#= label_tag "site[theme]", "Theme:" %><br/>
-          <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
-        </div>
+          <!-- EDIT SITE SUBMIT BUTTON -->
+          <div class="site-submit site-data">
+            <%= submit_tag "Submit Site Text", class: "site-data-submit-button submit" %>
+          </div>
 
-        <!-- EDIT SITE SUBMIT BUTTON -->
-        <%= submit_tag "Submit Site Text" %>
+          <!-- SITE THEME / OPTIONAL -->
+          <!-- <div class="site-theme"> -->
+            <%#= label_tag "site[theme]", "Theme:" %>
+            <%#= select_tag "site[theme]", options_for_select(@themes, "id", "name") %>
+          <!-- </div> -->
 
-      <% end %>
+        <% end %>
+      </div><!-- //EDIT SITE DATA -->
 
       <!-- DISPLAY CURRENT SITE LOGO -->
-      <div class="site-logo">
-        <h4>Current Site Logo</h4>
-        <% if @logo %>
-          <%= image_tag "/images/#{@logo.id}" %>
+      <div class="edit-site-logo">
+        <div class="current-logo">
+          <h4 class="site-logo-header">Current Site Logo:</h4>
+          <% if @logo %>
+            <%= image_tag "/images/#{@logo.id}", class: "current-site-logo" %>
+          <% end %>
+        </div>
+
+        <!-- UPLOAD LOGO FORM -->
+        <% if @logo != nil %>
+          <% @logo_url = "/images/#{@logo.id}" %>
+          <% @logo_request = :put %>
+        <% else %>
+          <% @logo_url = "/images" %>
+          <% @logo_request = :post %>
         <% end %>
-      </div>
+        <%= form_tag "#{@logo_url}", method: @logo_request, multipart: true do %>
 
-      <!-- UPLOAD LOGO FORM -->
-      <% if @logo != nil %>
-        <% @logo_url = "/images/#{@logo.id}" %>
-        <% @logo_request = :put %>
-      <% else %>
-        <% @logo_url = "/images" %>
-        <% @logo_request = :post %>
-      <% end %>
-      <%= form_tag "#{@logo_url}", method: @logo_request, multipart: true do %>
+          <!-- FILE UPLOAD FOR LOGO -->
+          <div class="site-logo">
+            <%= label_tag "picture", "New Logo:", class: "update-logo" %><br/>
+            <%= file_field_tag "picture" %>
+          </div>
 
-        <!-- FILE UPLOAD FOR LOGO -->
-        <div class="site-logo">
-          <%= label_tag "picture", "New Logo:" %><br/>
-          <%= file_field_tag "picture" %>
-        </div>
+          <!-- SUBMIT BUTTON AND WARNING -->
+          <div class="site-logo">
+            <%= submit_tag "Upload Logo", class: "submit-logo" %>
+            <p class="warning-text">Clicking Upload Logo will refresh the page. Be sure to save all your information first!</p>
+          </div>
 
-        <!-- SUBMIT BUTTON AND WARNING -->
-        <div class="site-logo">
-          <%= submit_tag "Upload Logo" %>
-          <p class="warning-text">Clicking Upload Logo will refresh the page. Be sure to save all your information first!</p>
-        </div>
+          <%= hidden_field(:image, :imageable_type, value: "site") %>
+          <%= hidden_field(:image, :imageable_id, value: @site.id) %>
 
-        <%= hidden_field(:image, :imageable_type, value: "site") %>
-        <%= hidden_field(:image, :imageable_id, value: @site.id) %>
+        <% end %>
 
-      <% end %>
+      </div><!-- //EDIT SITE LOGO -->
 
     </div><!-- //EDIT SITE FORM -->
 
