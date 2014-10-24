@@ -19,7 +19,7 @@ nav {
   margin: 0;
   background-color: #d4d3d1;
   font-size: 2em;
-  box-shadow: 0px -1px 3px 1px #666;
+  box-shadow: 0px 0px 10px 1px #666;
   padding: 0 15px 0 0;
 }
 a {
@@ -44,7 +44,9 @@ nav ul {
 
 nav ul li {
   float: right;
-  margin: 0 .5px;
+  margin: 0px;
+
+  color: white;
 }
 
 nav ul li a {
