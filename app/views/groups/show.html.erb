@@ -19,12 +19,20 @@
     </nav>
 
     <section class='page-container'>
-      <img src='http://placehold.it/800x150&text=<%= @group.name%>'>
+      <% if @groups.last.images.first.nil? %>
+        <img src='http://placehold.it/800x150&text=No+Image+Found'>
+      <% else %>
+        <%= image_tag '/images/#{@groups.last.images.first.id}' %>
+      <% end %>
       <% @group.contents.reverse.each do |x| %>
         <% if x.featured == true %>
       <%= link_to content_path(x.id) do%>
       <article class='featured-post clear'>
-        <img src=<%= x.images.first %> alt='Cannot Find Image'>
+      <% if x.images.first.nil? %>
+        <img src='http://placehold.it/200x200&text=No+Image+Found'>
+      <% else %>
+        <%= image_tag '/images/#{x.images.first.id}' %>
+      <% end %>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
         <p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
@@ -36,7 +44,11 @@
         <% if x.featured == false %>
       <%= link_to content_path(x.id) do%>
       <article class='article-link clear'>
-        <img src=<%= x.images.first %> alt='Cannot Find Image'>
+      <% if x.images.first.nil? %>
+        <img src='http://placehold.it/150x150&text=No+Image+Found'>
+      <% else %>
+        <%= image_tag '/images/#{x.images.first.id}' %>
+      <% end %>
         <div class='content'>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>

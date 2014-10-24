@@ -6,7 +6,7 @@
       <%= link_to root_path do %> <div class='nav-brand'><%= @content.group.site.name %></div><% end %>
       <div class='nav-links'>
         <ul>
-        <% @content.group.site.groups.each do |x| %>
+        <% @content.group.site.groups.reverse.each do |x| %>
           <% if x.nav = true %>
           <li>
             <%= link_to x.name,group_path(x.id)%> 
@@ -19,7 +19,11 @@
 
 <section class='page-container content'>
 <h1><%= @content.title %></h1>
-<img src=<%= @content.images.first %> alt='Cannot Find Image'>
+<% if @content.images.first.nil? %>
+  <img src='http://placehold.it/800x300&text=No+Image+Found'>
+<% else %>
+  <%= image_tag '/images/#{@content.images.first.id}' %>
+<% end %>
 <h2><%= @content.subtitle %></h2>
 <h3><%= @content.created_at %></h3>
 <p><%= @content.story%></p>
