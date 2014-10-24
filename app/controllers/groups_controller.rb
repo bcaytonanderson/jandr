@@ -32,7 +32,7 @@ class GroupsController < ApplicationController
       @group.save
     end
     @group.update(group_params)
-    redirect_to "/admin"
+    # redirect_to "/admin"
   end
 
   def delete
