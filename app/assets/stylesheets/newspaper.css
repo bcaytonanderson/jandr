@@ -14,10 +14,13 @@ body {
 }
 
 nav {
+  box-sizing: border-box;
   width: 100%;
   margin: 0;
   background-color: #d4d3d1;
   font-size: 2em;
+  box-shadow: 0px -1px 3px 1px #666;
+  padding: 0 15px 0 0;
 }
 a {
   text-decoration: none;
@@ -30,30 +33,28 @@ a {
   display: block;
   margin-left: 15px;
   padding: 10px 30px;
-  background-color: #666;
+  background-color: #2A52BE
 }
 
 nav ul {
   width: 100%;
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 0 15px 0 0;
 }
 
 nav ul li {
   float: right;
-  border-left: 1px solid;
+  margin: 0 .5px;
 }
 
 nav ul li a {
+  background-color:#2A52BE;
   font-weight: 500;
-  color: blue;
+  color: white;
   text-decoration: none;
   display: block;
   padding: 10px 10px;
 }
-
-
 
 nav div:hover {
   text-decoration: underline;
@@ -64,7 +65,7 @@ nav ul li a:hover {
 }
 
 section.page-container {
-  width: 900px;
+  width: 800px;
   padding: 1em 0 1em 0;
   margin: 20px auto;
 }
@@ -104,7 +105,7 @@ section.page-container p:nth-child(2) {
   margin: 0 20px 0 20px;
 }
 section.page-container article.featured-post {
-  border: 5px solid black;
+  box-shadow: 1px 1px 10px .5px gray;
   padding: 10px;
   margin: 10px auto;
 }
@@ -115,21 +116,23 @@ section.page-container article.featured-post img {
   margin-right: 10px;
 }
 section.page-container article.featured-post h2 {
+  text-decoration: underline;
   font-size: 2.5em;
   font-weight: 700;
   margin: 5px;
 }
 section.page-container article.featured-post h4 {
-  font-size: 1.75em;
+  font-size: 2em;
   font-weight: 700;
   margin: 5px;
 }
 section.page-container article.featured-post p {
-  font-size: 1.5em;
+  font-size: 2em;
   text-align: justify;
 }
 section.page-container article.article-link {
-  border: 2px solid black;
+
+  box-shadow: 1px 1px 10px .5px gray;
   padding: 10px;
   margin: 10px auto;
 }
@@ -140,7 +143,8 @@ section.page-container article.article-link img {
   margin-right: 10px;
 }
 section.page-container article.article-link h2 {
-  font-size: 1.75em;
+  text-decoration: underline;
+  font-size: 2em;
   font-weight: 700;
   margin: 5px;
 }
@@ -154,6 +158,14 @@ section.page-container article.article-link p {
   text-align: justify;
 }
 
-section.page-container article.featured-post:hover, section.page-container article.article-link:hover {
-  border-color: blue;
+
+a {
+  h2{
+  color: #2952BE;
+  }
+}
+a:visited {
+  h2 {
+    color: purple;
+  }
 }

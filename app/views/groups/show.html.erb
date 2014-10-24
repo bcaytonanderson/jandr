@@ -1,8 +1,7 @@
 
 <%= stylesheet_link_tag 'reset', 'data-turbolinks-track' => true %>
 <%= stylesheet_link_tag 'newspaper', 'data-turbolinks-track' => true %>
-        <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="newspaper.css">
+
 
      <nav class='navbar clear'>
             <%= link_to root_path do %> <div class='nav-brand'><%= @group.site.name %></div><% end %>
@@ -20,12 +19,12 @@
     </nav>
 
     <section class='page-container'>
-      <img src='http://placehold.it/900x150&text=<%= @group.name%>'>
+      <img src='http://placehold.it/800x150&text=<%= @group.name%>'>
       <% @group.contents.reverse.each do |x| %>
         <% if x.featured == true %>
       <%= link_to content_path(x.id) do%>
       <article class='featured-post clear'>
-        <img src=<%= x.image_key %>>
+        <img src=<%= x.images.first %> alt='Cannot Find Image'>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
         <p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
@@ -37,7 +36,7 @@
         <% if x.featured == false %>
       <%= link_to content_path(x.id) do%>
       <article class='article-link clear'>
-        <img src=<%= x.image_key %>>
+        <img src=<%= x.images.first %> alt='Cannot Find Image'>
         <div class='content'>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
