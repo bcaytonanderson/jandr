@@ -19,10 +19,10 @@
     </nav>
 
     <section class='page-container'>
-      <% if @groups.last.images.first.nil? %>
+      <% if @group.images.first.nil? %>
         <img src='http://placehold.it/800x150&text=No+Image+Found'>
       <% else %>
-        <%= image_tag '/images/#{@groups.last.images.first.id}' %>
+        <%= image_tag '/images/#{@groups.images.first.id}' %>
       <% end %>
       <% @group.contents.reverse.each do |x| %>
         <% if x.featured == true %>
