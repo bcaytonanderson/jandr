@@ -21,26 +21,30 @@
     </nav>
 
     <section class='page-container'>
-      <img src='http://placehold.it/900x150&text=<%= @groups.first.name%>'>
-      <% @groups.first.contents.reverse.each do |x| %>
+      <img src='http://placehold.it/900x150&text=<%= @groups.last.name%>'>
+      <% @groups.last.contents.reverse.each do |x| %>
         <% if x.featured == true %>
       <%= link_to content_path(x.id) do%>
       <article class='featured-post clear'>
         <img src=<%= x.image_key %>>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
+        <p><%= x.created_at %></p>
+        <br>
         <p><%= x.story %></p>
       </article>
       <% end %>
       <% end %>
       <% end %>
-      <% @groups.first.contents.reverse.each do |x| %>
+      <% @groups.last.contents.reverse.each do |x| %>
         <% if x.featured == false %>
       <%= link_to content_path(x.id) do%>
       <article class='article-link clear'>
         <img src=<%= x.image_key %>>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
+                <p><%= x.created_at %></p>
+        <br>
         <p><%= x.story %></p>
       </article>
       <% end %>

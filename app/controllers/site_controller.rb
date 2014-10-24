@@ -3,7 +3,7 @@ class SiteController < ApplicationController
 
 
   def index
-    @site = Site.find_by(user_id: current_user.id)
+    @site = Site.first
     if @site
       @groups = @site.groups
     end

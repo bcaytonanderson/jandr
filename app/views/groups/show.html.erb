@@ -28,7 +28,7 @@
         <img src=<%= x.image_key %>>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
-        <p><%= x.story %></p>
+        <p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
       </article>
       <% end %>
       <% end %>
@@ -38,9 +38,11 @@
       <%= link_to content_path(x.id) do%>
       <article class='article-link clear'>
         <img src=<%= x.image_key %>>
+        <div class='content'>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
-        <p><%= x.story %></p>
+        <p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
+        </div>
       </article>
       <% end %>
       <% end %>
