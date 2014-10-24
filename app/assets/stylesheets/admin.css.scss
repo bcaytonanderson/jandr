@@ -16,71 +16,69 @@
   font-family: Helvetica, Arial, sans-serif!important;
 }
 .dashboard {
-  min-width: 300px;
+  min-width: 360px;
   position: relative;
   margin: 0 auto;
   // background-color: black
 }
 .header {
   background-color:#3ca0d1;
-  height: 25px;
+  height: 50px;
   // min-width: 420px;
-}
-.header a {
-  float: right;
-  color: white!important;
-  font-size: 0.6em!important;
-  margin: 7px 10px 0 0;
-}
-.header a:hover {
-  color: blue!important;
 }
 .header h1 {
   float: left;
   color: #03476a;
-  font-size: 1em!important;
-  margin: 5px 0 0 10px;
+  font-size: 3em!important;
+  margin: 12px 0 0 10px;
 }
 .jandr {
   font-weight: bold;
+}
+.header a {
+  float: right;
+  color: white!important;
+  font-size: 2em!important;
+  margin: 17px 10px 0 0;
+}
+.header a:hover {
+  color: #03476a!important;
 }
 .border {
   height: 1px;
   background-color: white;
 }
 .edit-site {
-  background-color:white;
+  // background-color:white;
 }
 .edit-site-data {
-  height: 40px;
+  // width: 100%;
 }
 .site-data-form {
   margin: 0 auto;
-  width: 99.2%;
+  width: 100%;
+}
+.data {
+
+  margin: 0 auto;
 }
 .site-data {
-  // position:absolute;
-  float: left;
-  height: 39px;
-  width: 33.15%;
+  height: 58px;
   background-color: #03476a;
   color: #63add0;
-  border-right: 1px solid white;
-  // border-bottom: 1px solid white;
-  // border-left: 1px solid white;
+  padding: 10px 10px;
 }
 .site-data-label{
-  // position:absolute;
-  margin: 9px 2px;
-  font-size: 1em!important;
+  margin: 15px 2px;
+  font-size: 2.5em!important;
   position:relative;
   top:2px;
 }
 .site-data-input{
-  margin: 5px 2px;
+  margin: 5px 2px 10px;
   width: 80%;
-  height: 8px;
-  font-size: 0.7em;
+  // height: 8px;
+  font-size: 1.5em;
   line-height: 1;
   // position:relative;
   // top:-10px;
@@ -91,41 +89,68 @@
 .site-data-submit-button {
   color: white;
   background-color: #ff8901;
-  font-size: 0.8em;
+  font-size: 1.4em;
   border: 1px solid white;
   border-radius: 5px;
-  margin: 11px 12px;
+  margin: 12px 0 0;
 }
 .edit-site-logo {
   background-color: white;
 }
-.current-logo {
-  border: 1px solid black;
-  margin: 0 1px;
+.edit-site-logo {
+  border: 3px solid #03476a;
 }
-.site-logo-header {
-  font-size: 1em!important;
+.new-site-logo {
+  padding: 4px 1px 2px;
+}
+.site-logo-header,
+.update-logo {
+  font-size: 2em!important;
   color: #3ca0d1;
   margin: 4px 2px 2px;
 }
 .current-site-logo {
-  width: 150px;
-  height: 50px;
+  width: 90%;
+  height: 16.875%;
   margin: 2px;
 }
-.update-logo {
-  font-size: 0.6em!important;
+.submit-logo {
+  margin: 10px 0;
+  // width: 70px;
+  // height: 20px;
+  font-size: 20px;
+  // line-height: 1;
+}
+.logo-input{
+  margin-top: 5px;
+}
+.warning-text {
+  font-size: 1em!important;
   color: #3ca0d1;
-  margin: 4px 2px 2px;
+  width: 200px;
+  margin: 3px 3px;
 }
 .dashboard {
   background-color: purple;
 }
-.edit-site {
-  // background-color: green;
-}
 .create-group {
-  background-color: gray;
+  // background-color: #ff8901;
+  // height: 30px;
+  // padding: 5px;
+  // border: 1px solid white;
+}
+.create-group-button,
+.edit-group-button {
+  font-size: 2em;
+  color: white;
+  // margin: 10px 2px;
+  background-color: #ff8901;
+  height: 30px;
+  padding: 5px;
+  border-bottom: 1px solid white;
+  width: 100%;
+  // border: 1px solid white;
+  // border-radius: 5px;
 }
 .edit-group-form {
   background-color: pink;

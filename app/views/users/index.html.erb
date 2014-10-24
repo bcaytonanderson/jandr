@@ -21,17 +21,19 @@
       <div class="edit-site-data clear">
         <%= form_tag "/site/#{@site.id}", class: "site-data-form", method: :put, remote: true do %>
 
-          <!-- SITE NAME -->
-          <div class="site-name site-data">
-            <%= label_tag "site[name]", "Name:", class: "site-data-label" %><br/>
-            <%= text_field_tag "site[name]", "#{@site.name}", class: "site-data-input" %>
-          </div>
+          <!-- <div class="data"> -->
+            <!-- SITE NAME -->
+            <div class="site-name site-data">
+              <%= label_tag "site[name]", "Name:", class: "site-data-label" %><br/>
+              <%= text_field_tag "site[name]", "#{@site.name}", class: "site-data-input" %>
+            </div>
 
-          <!-- SITE HEADLINE -->
-          <div class="site-headline site-data">
-            <%= label_tag "site[headline]", "Headline:", class: "site-data-label"  %><br/>
-            <%= text_field_tag "site[headline]", "#{@site.headline}", class: "site-data-input" %>
-          </div>
+            <!-- SITE HEADLINE -->
+            <div class="site-headline site-data">
+              <%= label_tag "site[headline]", "Headline:", class: "site-data-label"  %><br/>
+              <%= text_field_tag "site[headline]", "#{@site.headline}", class: "site-data-input" %>
+            </div>
+          <!-- </div> -->
 
           <!-- EDIT SITE SUBMIT BUTTON -->
           <div class="site-submit site-data">
@@ -56,46 +58,52 @@
           <% end %>
         </div>
 
-        <!-- UPLOAD LOGO FORM -->
-        <% if @logo != nil %>
-          <% @logo_url = "/images/#{@logo.id}" %>
-          <% @logo_request = :put %>
-        <% else %>
-          <% @logo_url = "/images" %>
-          <% @logo_request = :post %>
-        <% end %>
-        <%= form_tag "#{@logo_url}", method: @logo_request, multipart: true do %>
+        <div class="border"></div>
 
-          <!-- FILE UPLOAD FOR LOGO -->
-          <div class="site-logo">
-            <%= label_tag "picture", "New Logo:", class: "update-logo" %><br/>
-            <%= file_field_tag "picture" %>
-          </div>
+        <div class="new-site-logo">
+          <!-- UPLOAD LOGO FORM -->
+          <% if @logo != nil %>
+            <% @logo_url = "/images/#{@logo.id}" %>
+            <% @logo_request = :put %>
+          <% else %>
+            <% @logo_url = "/images" %>
+            <% @logo_request = :post %>
+          <% end %>
+          <%= form_tag "#{@logo_url}", method: @logo_request, multipart: true do %>
 
-          <!-- SUBMIT BUTTON AND WARNING -->
-          <div class="site-logo">
-            <%= submit_tag "Upload Logo", class: "submit-logo" %>
-            <p class="warning-text">Clicking Upload Logo will refresh the page. Be sure to save all your information first!</p>
-          </div>
+            <!-- FILE UPLOAD FOR LOGO -->
+            <div class="site-logo">
+              <%= label_tag "picture", "Create New Logo:", class: "update-logo" %>
+              <p class="warning-text">Logo should be 800px wide x 150px high.</p>
+              <%= file_field_tag "picture", class: "logo-input" %>
+            </div>
 
-          <%= hidden_field(:image, :imageable_type, value: "site") %>
-          <%= hidden_field(:image, :imageable_id, value: @site.id) %>
+            <!-- SUBMIT BUTTON AND WARNING -->
+            <div class="site-logo">
+              <%= submit_tag "Upload Logo", class: "submit-logo" %>
+              <p class="warning-text">Clicking Upload Logo will refresh the page. Be sure to save all your information first!</p>
+            </div>
 
-        <% end %>
+            <%= hidden_field(:image, :imageable_type, value: "site") %>
+            <%= hidden_field(:image, :imageable_id, value: @site.id) %>
+
+          <% end %>
+        </div><!-- //NEW SITE LOGO -->
 
       </div><!-- //EDIT SITE LOGO -->
 
     </div><!-- //EDIT SITE FORM -->
 
     <!-- CREATE NEW GROUP / BUILD AJAX FORM REQUEST AND INSERT IT ON DOM -->
-    <div class="create-group">
-      <%= link_to "Create a Group", new_group_path, remote: true %>
-    </div>
+    <!-- <div class="create-group"> -->
+      <%#= link_to "Create a Group", new_group_path, remote: true, class: "create-group-button" %>
+    <!-- </div> -->
+    <h4 class="edit-group-button">Create Group</h4>
+
     <div class="new-group-form" style="display:none;"></div>
 
     <!-- GROUPS -->
     <div class="edit-groups">
-      <h3>Current Groups</h3>
       <% @groups.each do |group| %>
 
         <script>
@@ -104,13 +112,12 @@
 
             $('.edit-group-'+<%= group.id %>).on('click', function(){
               $('.edit-group-'+<%= group.id %>+'-form').slideToggle();
-              // console.log(num);
             });
 
           });
         </script>
         <!-- MAKE LINK THAT SHOWS THE EDIT GROUP FORM BELOW IT -->
-        <h4 class="edit-group-<%= group.id %>">Edit Group <%= group.name %></h4>
+        <h4 class="edit-group-button edit-group-<%= group.id %>">Edit Group <%= group.name %></h4>
 
         <!-- EDIT GROUP FORM / AJAX-->
         <div class="edit-group-<%= group.id %>-form edit-group-form">
@@ -261,7 +268,7 @@
         <%#= image_tag "hello.jpg" %>
       </div>
       <div class="site-logo">
-        <%#= label_tag "site[picture]", "Logo:" %><br/>
+        <%#= label_tag "site[picture]", "Logo:" %>
         <%#= file_field_tag "picture" %>
       </div>
 
