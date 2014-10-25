@@ -196,7 +196,7 @@ input.create-group-submit {
 .edit-group-input,
 .edit-content-input{
   margin: 5px 0 10px;
-  width: 80%;
+  width: 73%;
   // height: 8px;
   font-size: 1.5em;
   line-height: 1;
@@ -291,4 +291,20 @@ div.content-image {
   background-color:#03476a;
   color: #63add0;
   padding: 15px 12px 0;
+}
+.create-group-button:hover,
+.edit-group-button:hover,
+.create-content-button:hover,
+.edit-content-button:hover,
+.site-data-submit-button:hover,
+.edit-group-submit-button:hover,
+.edit-content-submit-button:hover {
+  cursor:pointer;
+}
+.delete-group,
+.delete-content {
+  float:right;
+}
+.warning-text.delete-text {
+  width:90px;
 }

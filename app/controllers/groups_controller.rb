@@ -32,10 +32,12 @@ class GroupsController < ApplicationController
       @group.save
     end
     @group.update(group_params)
-    # redirect_to "/admin"
   end
 
-  def delete
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    redirect_to '/admin'
   end
 
   private

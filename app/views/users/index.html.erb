@@ -155,6 +155,12 @@
         <div class="edit-group-<%= group.id %>-form edit-group-form">
 
           <div class="edit-group-data">
+            <div class="delete-group">
+              <%= form_tag "/groups/#{group.id}", method: :delete do %>
+                <%= submit_tag("Delete Group") %>
+                <p class="warning-text delete-text">This action cannot be undone</p>
+              <% end %>
+            </div>
             <%= form_tag "/groups/#{group.id}", method: :put, remote: true do %>
 
               <!-- EDIT GROUP NAME -->
@@ -270,6 +276,12 @@
             <!-- EDIT CONTENT FORM / AJAX -->
             <div class="edit-content-<%= content.id %>-form edit-content-form">
               <div class="edit-content-data">
+                <div class="delete-content">
+                <%= form_tag "/contents/#{content.id}", method: :delete do %>
+                  <%= submit_tag("Delete Content") %>
+                  <p class="warning-text delete-text">This action cannot be undone</p>
+                <% end %>
+              </div>
                 <%= form_tag "/contents/#{content.id}", method: :put, remote: true do %>
 
                   <!-- EDIT CONTENT TITLE -->
