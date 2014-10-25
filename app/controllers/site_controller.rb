@@ -4,6 +4,11 @@ class SiteController < ApplicationController
     @site = Site.all.first
     if @site != nil
       @groups = Group.where(site_id: @site.id)
+      @contents = []
+      @groups.each do |group|
+        @contents << Content.where(group_id: group.id)
+        @contents.flatten!
+      end
       @logo = Image.find_by(imageable_type: "site", imageable_id: @site.id)
     else
       redirect_to '/admin'
