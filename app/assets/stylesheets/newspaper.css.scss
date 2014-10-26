@@ -22,13 +22,23 @@ nav {
   margin: 0;
   background-color: #d4d3d1;
   font-size: 2em;
-  box-shadow: 0px 0px 10px 1px #666;
+  box-shadow: 0px 0px 5px 1px #aaa;
   padding: 0 15px 0 0;
 }
+
 a {
   text-decoration: none;
   color: black;
+  h2 {
+  color: #2952BE;
+  }
 }
+a:visited {
+  h2 {
+    color: purple;
+  }
+}
+
 .nav-brand {
   float: left;
   font-weight: 700;
@@ -36,7 +46,8 @@ a {
   display: block;
   margin-left: 15px;
   padding: 10px 30px;
-  background-color: #2A52BE
+  background-color: #2A52BE;
+  box-shadow: -1px 0px 1px 1px #2A52BE;
 }
 
 nav ul {
@@ -49,6 +60,7 @@ nav ul li {
   float: right;
   margin: 0px;
 
+    box-shadow: -1px 0px 1px 1px #2A52BE;
   color: white;
 }
 
@@ -165,16 +177,4 @@ section.page-container article.article-link h4 {
 section.page-container article.article-link p {
   font-size: 1.5em;
   text-align: justify;
-}
-
-
-a {
-  h2{
-  color: #2952BE;
-  }
-}
-a:visited {
-  h2 {
-    color: purple;
-  }
 }
