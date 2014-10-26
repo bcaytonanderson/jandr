@@ -28,14 +28,13 @@
         <% if x.featured == true %>
       <%= link_to content_path(x.id) do%>
       <article class='featured-post clear'>
-      <% if x.images.first.nil? %>
-        <img src='http://placehold.it/200x200&text=No+Image+Found'>
+      <% if Image.where(imageable_type: x.class.to_s.downcase, imageable_id: x.id).nil? %>
+        <img src='http://placehold.it/800x150&text=No+Image+Found'>
       <% else %>
-        <%= image_tag '/images/#{x.images.first.id}' %>
-      <% end %>
+        <%= image_tag "/images/#{x.id}.jpg" %>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
-        <p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
+        <p><%= simple_format(x.story.split(' ').slice(0, 50).join(' ')+'...')%></p>
       </article>
       <% end %>
       <% end %>
@@ -44,15 +43,13 @@
         <% if x.featured == false %>
       <%= link_to content_path(x.id) do%>
       <article class='article-link clear'>
-      <% if x.images.first.nil? %>
-        <img src='http://placehold.it/150x150&text=No+Image+Found'>
+      <% if Image.where(imageable_type: x.class.to_s.downcase, imageable_id: x.id).nil? %>
+        <img src='http://placehold.it/800x150&text=No+Image+Found'>
       <% else %>
-        <%= image_tag '/images/#{x.images.first.id}' %>
-      <% end %>
+        <%= image_tag "/images/#{x.id}.jpg" %>
         <div class='content'>
         <h2><%= x.title %></h2>
-        <h4><%= x.subtitle%></h4>
-        <p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
+        <h4><%= x.subtitle%></h4><p><%= simple_format(x.story.split(' ').slice(0, 50).join(' ')+'...')%></p><p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
         </div>
       </article>
       <% end %>

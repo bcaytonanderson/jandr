@@ -2,13 +2,13 @@ User.create!([
   {email: "bcaytonanderson@gmail.com", encrypted_password: "$2a$10$b0CyxBd/FybxtYwqzmLhyOWP3C1j9JEorbmCasTe4TSgOaPRcHEai", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 3, current_sign_in_at: "2014-10-26 19:15:04", last_sign_in_at: "2014-10-23 22:26:56", current_sign_in_ip: #<IPAddr: IPv4:127.0.0.1/255.255.255.255>, last_sign_in_ip: #<IPAddr: IPv4:127.0.0.1/255.255.255.255>}
 ])
 Content.create!([
-  {title: "Some other fucking story", subtitle: "Just another day where some average shit happened", story: "On this day some average type bullshit happened and people predictably responded like assholes. Those fuckers.", featured: false, group_id: 1},
   {title: "Some title", subtitle: "More descriptive title.", story: "There is no story here.", featured: false, group_id: 1},
   {title: "Some title", subtitle: "More descriptive title.", story: "There is no story here.", featured: false, group_id: 1},
   {title: "Some title", subtitle: "More descriptive title.", story: "There is no story here.", featured: false, group_id: 1},
   {title: "Some title", subtitle: "More descriptive title.", story: "There is no story here.", featured: false, group_id: 1},
   {title: "Featured Content Headline", subtitle: "A more descriptive headline than the first.", story: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tempus sapien at massa vulputate, ut elementum est commodo. In faucibus nibh sed arcu iaculis, eget tempus justo vulputate. Curabitur accumsan lobortis massa, semper pharetra arcu convallis ac. Ut metus eros, rutrum a mi non, fermentum molestie eros. Quisque commodo justo in ultricies lacinia. Donec hendrerit vitae ex at vehicula. Ut sagittis nibh sapien, vitae porta quam consequat scelerisque. Curabitur rhoncus purus nec porttitor tincidunt. Nulla at ullamcorper nulla, quis maximus orci...", featured: true, group_id: 1},
-  {title: "Another title", subtitle: "This is just another entry.", story: "Here's some stuff for you.", featured: false, group_id: 1}
+  {title: "Another title", subtitle: "This is just another entry.", story: "Here's some stuff for you.", featured: false, group_id: 1},
+  {title: "Some other story", subtitle: "Some other description", story: "On this day some average type bullshit happened and people predictably responded like assholes. Those fuckers.", featured: false, group_id: 1}
 ])
 Group.create!([
   {name: "Group0", nav: false, site_id: 1},

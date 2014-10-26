@@ -2,6 +2,7 @@
 
 <%= stylesheet_link_tag 'reset', 'data-turbolinks-track' => true %>
 <%= stylesheet_link_tag 'portfolio', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag 'color-scheme-1', 'data-turbolinks-track' => true %>
 
      <nav class='navbar clear'>
             <%= link_to root_path do %> <div class='nav-brand'><%= @site.name %></div><% end %>
@@ -36,7 +37,7 @@
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
         <p><%= x.created_at %></p>
-        <p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
+        <p><%= simple_format(x.story.split(' ').slice(0, 50).join(' ')+'...')%></p>
       </article>
       <% end %>
       <% end %>
@@ -53,7 +54,7 @@
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
         <p><%= x.created_at %></p>
-        <p><%= simple_format(x.story) %></p>
+        <p><%= simple_format(x.story.split(' ').slice(0, 50).join(' ')+'...') %></p>
       </article>
       <% end %>
       <% end %>
