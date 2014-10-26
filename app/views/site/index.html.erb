@@ -1,7 +1,7 @@
 <body>
 
 <%= stylesheet_link_tag 'reset', 'data-turbolinks-track' => true %>
-<%= stylesheet_link_tag 'newspaper', 'data-turbolinks-track' => true %>
+<%= stylesheet_link_tag 'portfolio', 'data-turbolinks-track' => true %>
 
      <nav class='navbar clear'>
             <%= link_to root_path do %> <div class='nav-brand'><%= @site.name %></div><% end %>
@@ -19,25 +19,24 @@
     </nav>
 
     <section class='page-container'>
-      <% if @groups.last.images.first.nil? %>
+      <% if Image.where(imageable_type: @groups.last.class.to_s.downcase, imageable_id: @groups.last.contents.first.id).nil? %>
         <img src='http://placehold.it/800x150&text=No+Image+Found'>
       <% else %>
-        <%= image_tag '/images/#{@groups.last.images.first.id}' %>
+        <%= image_tag '/images/1.jpg' %>
       <% end %>
       <% @groups.last.contents.reverse.each do |x| %>
         <% if x.featured == true %>
       <%= link_to content_path(x.id) do%>
       <article class='featured-post clear'>
-      <% if x.images.first.nil? %>
-        <img src='http://placehold.it/200x200&text=No+Image+Found'>
+      <% if Image.where(imageable_type: x.class.to_s.downcase, imageable_id: x.id).nil? %>
+        <img src='http://placehold.it/800x150&text=No+Image+Found'>
       <% else %>
-        <%= image_tag '/images/#{x.images.first.id}' %>
+        <%= image_tag "/images/#{x.id}.jpg" %>
       <% end %>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
         <p><%= x.created_at %></p>
-        <br>
-        <p><%= x.story %></p>
+        <p><%= x.story.split(' ').slice(0, 50).join(' ') %>...</p>
       </article>
       <% end %>
       <% end %>
@@ -46,15 +45,14 @@
         <% if x.featured == false %>
       <%= link_to content_path(x.id) do%>
       <article class='article-link clear'>
-      <% if x.images.first.nil? %>
-        <img src='http://placehold.it/150x150&text=No+Image+Found'>
+      <% if Image.where(imageable_type: x.class.to_s.downcase, imageable_id: x.id).nil? %>
+        <img src='http://placehold.it/800x150&text=No+Image+Found'>
       <% else %>
-        <%= image_tag '/images/#{x.images.first.id}' %>
+        <%= image_tag "/images/#{x.id}.jpg" %>
       <% end %>
         <h2><%= x.title %></h2>
         <h4><%= x.subtitle%></h4>
-                <p><%= x.created_at %></p>
-        <br>
+        <p><%= x.created_at %></p>
         <p><%= simple_format(x.story) %></p>
       </article>
       <% end %>

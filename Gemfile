@@ -80,3 +80,5 @@ gem 'bower-rails'
 gem 'remotipart', '~> 1.2'
 
 gem 'prefixfree-rails', "~> 0.0.1"
+
+gem 'seed_dump'
