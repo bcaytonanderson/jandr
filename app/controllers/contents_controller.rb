@@ -32,10 +32,12 @@ class ContentsController < ApplicationController
       @content.save
     end
     @content.update(content_params)
-    redirect_to "/admin"
   end
 
-  def delete
+  def destroy
+    @content = Content.find(params[:id])
+    @content.destroy
+    redirect_to '/admin'
   end
 
   private

@@ -2,8 +2,17 @@ class SiteController < ApplicationController
 
   def index
     @site = Site.all.first
-    @groups = @site.groups
-    @logo = Image.find_by(imageable_type: "site", imageable_id: @site.id)
+    if @site != nil
+      @groups = Group.where(site_id: @site.id)
+      @contents = []
+      @groups.each do |group|
+        @contents << Content.where(group_id: group.id)
+        @contents.flatten!
+      end
+      @logo = Image.find_by(imageable_type: "site", imageable_id: @site.id)
+    else
+      redirect_to '/admin'
+    end
   end
 
   def create

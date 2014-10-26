@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :contents, :only => [:index, :create, :new]
   end
 
-  resources :contents, :only => [:index, :show, :edit, :update, :delete]
+  resources :contents, :only => [:index, :show, :edit, :update, :destroy]
 
   resources :images, :only => [:create, :show, :update, :delete]
 

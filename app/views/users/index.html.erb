@@ -36,6 +36,7 @@
           <!-- </div> -->
 
           <!-- EDIT SITE SUBMIT BUTTON -->
+          <div class="edit-site-request"></div>
           <div class="site-submit site-data">
             <%= submit_tag "Submit Site Info", class: "site-data-submit-button submit" %>
           </div>
@@ -147,6 +148,7 @@
 
           });
         </script>
+
         <!-- MAKE LINK THAT SHOWS THE EDIT GROUP FORM BELOW IT -->
         <h4 class="edit-group-button edit-group-<%= group.id %>">Edit <%= group.name %></h4>
 
@@ -154,6 +156,12 @@
         <div class="edit-group-<%= group.id %>-form edit-group-form">
 
           <div class="edit-group-data">
+            <div class="delete-group">
+              <%= form_tag "/groups/#{group.id}", method: :delete do %>
+                <%= submit_tag("Delete Group") %>
+                <p class="warning-text delete-text">This action cannot be undone</p>
+              <% end %>
+            </div>
             <%= form_tag "/groups/#{group.id}", method: :put, remote: true do %>
 
               <!-- EDIT GROUP NAME -->
@@ -173,6 +181,7 @@
               </div>
 
               <!-- EDIT GROUP SUBMIT BUTTON -->
+              <div class="edit-group-request"></div>
               <div class="edit-group-submit">
                 <%= submit_tag "Submit Group Info", class: "edit-group-submit-button" %>
               </div>
@@ -268,6 +277,12 @@
             <!-- EDIT CONTENT FORM / AJAX -->
             <div class="edit-content-<%= content.id %>-form edit-content-form">
               <div class="edit-content-data">
+                <div class="delete-content">
+                <%= form_tag "/contents/#{content.id}", method: :delete do %>
+                  <%= submit_tag("Delete Content") %>
+                  <p class="warning-text delete-text">This action cannot be undone</p>
+                <% end %>
+              </div>
                 <%= form_tag "/contents/#{content.id}", method: :put, remote: true do %>
 
                   <!-- EDIT CONTENT TITLE -->
@@ -299,6 +314,7 @@
                   </div>
 
                   <!-- EDIT CONTENT SUBMIT BUTTON -->
+                  <div class="edit-content-request"></div>
                   <div class="edit-content-submit">
                     <%= submit_tag "Submit Content Info", class: "edit-content-submit-button" %>
                   </div>
